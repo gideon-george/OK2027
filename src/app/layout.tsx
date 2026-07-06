@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { SiteHeader } from "@/components/shared/site-header";
+import { SiteFooter } from "@/components/shared/site-footer";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -13,10 +15,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "OK2027",
+  title: {
+    default: "OK2027 — Civic participation for 2027",
+    template: "%s | OK2027",
+  },
   description:
-    "A community and civic-participation app for Nigerian supporters ahead of the 2027 elections.",
-  manifest: "/manifest.json",
+    "A community and civic-participation app for Nigerian supporters ahead of the 2027 elections. Learn, organise your polling unit, and participate peacefully.",
+  manifest: "/OK2027/manifest.json",
 };
 
 export const viewport: Viewport = {
@@ -31,9 +36,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bricolageGrotesque.variable} ${dmSans.variable} font-sans antialiased`}
+        className={`${bricolageGrotesque.variable} ${dmSans.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
-        {children}
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

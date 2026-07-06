@@ -2,14 +2,20 @@
 
 Community and civic-participation app for Nigerian supporters ahead of the 2027 elections. Pilot scoped to ~5,000 users.
 
+**Live site:** https://gideon-george.github.io/OK2027/
+
 ## Stack
 
-- [Next.js 15](https://nextjs.org) (App Router) + TypeScript + Tailwind CSS + [shadcn/ui](https://ui.shadcn.com)
-- [Supabase](https://supabase.com) — Postgres, Auth (phone OTP), Storage, Realtime
-- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) for maps
+- [Next.js 15](https://nextjs.org) (App Router, static export) + TypeScript + Tailwind CSS + [shadcn/ui](https://ui.shadcn.com)
+- Hosted on **GitHub Pages** (static). Deploys automatically from `master` via GitHub Actions.
+- [Supabase](https://supabase.com) — Postgres, Auth (phone OTP), Storage, Realtime (schema + seed ready in `supabase/`; wired in client-side once a Supabase project is provisioned)
+- [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) for maps (planned)
 - [Zod](https://zod.dev) + [React Hook Form](https://react-hook-form.com) for validated forms
-- [Plausible](https://plausible.io) for analytics, [Sentry](https://sentry.io) for error tracking
-- Installable as a PWA via `next-pwa`
+
+> Note: GitHub Pages serves static files only, so all future backend features
+> (auth, chat, events) run client-side against Supabase. The earlier
+> `next-pwa` service worker was removed because it doesn't work under the
+> `/OK2027` base path; the web-app manifest remains.
 
 ## Local development
 
@@ -17,8 +23,8 @@ Community and civic-participation app for Nigerian supporters ahead of the 2027 
 
 - Node.js 20+
 - npm
-- A Supabase project (URL + anon key + service role key)
-- A Mapbox access token
+- (Only for future backend features) a Supabase project and Mapbox token — the
+  static site itself needs no credentials
 
 ### Setup
 
@@ -28,36 +34,37 @@ Community and civic-participation app for Nigerian supporters ahead of the 2027 
    npm install
    ```
 
-2. Copy the environment template and fill in real values:
-
-   ```bash
-   cp .env.local.example .env.local
-   ```
-
-   | Variable | Description |
-   | --- | --- |
-   | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
-   | `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (server-only, never expose to the client) |
-   | `NEXT_PUBLIC_MAPBOX_TOKEN` | Mapbox GL JS access token |
-   | `NEXT_PUBLIC_APP_URL` | Base URL of the app (e.g. `http://localhost:3000`) |
-
-3. Run the dev server:
+2. Run the dev server:
 
    ```bash
    npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000).
+3. Open [http://localhost:3000/OK2027](http://localhost:3000/OK2027) — the app
+   lives under the `/OK2027` base path to match GitHub Pages.
 
-Note: the PWA service worker (`next-pwa`) is disabled in development and only builds in production (`npm run build && npm run start`).
+For future backend features, copy `.env.local.example` to `.env.local` and
+fill in Supabase/Mapbox values:
+
+| Variable | Description |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (used only by the seed script, never shipped to the client) |
+| `NEXT_PUBLIC_MAPBOX_TOKEN` | Mapbox GL JS access token |
+| `NEXT_PUBLIC_APP_URL` | Base URL of the app |
+
+### Deployment
+
+Every push to `master` triggers `.github/workflows/deploy.yml`, which builds
+the static export (`out/`) and publishes it to GitHub Pages.
 
 ### Other scripts
 
 ```bash
-npm run build   # production build
-npm run start   # run the production build
-npm run lint    # eslint
+npm run build     # static export to out/
+npm run lint      # eslint
+npm run db:seed   # seed Supabase (dry-runs without credentials)
 ```
 
 ## Project structure
