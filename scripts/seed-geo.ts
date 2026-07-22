@@ -1,10 +1,14 @@
-// Seeds the OK2027 geographic hierarchy, group spaces, civic education
-// lessons, and badge catalog.
+// Seeds the NOkM geographic hierarchy, group spaces, civic education lessons,
+// and badge catalog.
 //
-// PILOT SCOPE: full zones + states are seeded nationally, but LGAs/wards/
-// polling units are only seeded for the Federal Capital Territory and
-// Anambra State. See data/inec-pilot.json for details -- ward and polling
-// unit data there is PLACEHOLDER, not the real INEC register.
+// NATIONAL SCOPE: zones, all 36 states + FCT, all 774 LGAs and all 8,874 wards
+// are seeded from public/geo/<CODE>.json, which is built by
+// scripts/build-geography.mjs from INEC's polling-unit register.
+//
+// Polling units (176,379 of them) are NOT seeded here. They are not needed for
+// registration -- /join places members down to ward level -- and they would add
+// ~176k rows plus a group space each. Seed them separately if and when unit
+// level organising begins.
 //
 // Usage:
 //   npm run db:seed              -- seeds against NEXT_PUBLIC_SUPABASE_URL /
@@ -30,27 +34,21 @@ try {
   // No .env.local present -- fine, we'll fall back to dry-run below.
 }
 
-interface PilotWard {
+interface GeoWard {
   name: string;
   code: string;
-  placeholder?: boolean;
 }
 
-interface PilotLga {
+interface GeoLga {
   name: string;
   code: string;
-  wards: PilotWard[];
+  wards: GeoWard[];
 }
 
-interface PilotState {
+interface GeoState {
   name: string;
   code: string;
-  lgas: PilotLga[];
-}
-
-interface PilotData {
-  _meta: Record<string, string>;
-  states: PilotState[];
+  lgas: GeoLga[];
 }
 
 const ZONES = [
@@ -108,9 +106,7 @@ const STATES: { name: string; code: string; zoneCode: string }[] = [
   { name: "Oyo", code: "OY", zoneCode: "SW" },
 ];
 
-// LGAs/wards/polling units are only seeded for these pilot states.
-const PILOT_STATE_CODES = new Set(["FC", "AN"]);
-const PLACEHOLDER_PUS_PER_WARD = 3;
+const GEO_DIR = path.join(projectRoot, "public", "geo");
 
 const LESSONS = [
   {
@@ -218,21 +214,17 @@ function chunk<T>(items: T[], size: number): T[][] {
   return out;
 }
 
-function loadPilotData(): PilotData {
-  const raw = fs.readFileSync(path.join(projectRoot, "data", "inec-pilot.json"), "utf-8");
-  return JSON.parse(raw) as PilotData;
-}
-
-function buildPollingUnits(wardCode: string, wardName: string) {
-  const units: { name: string; pu_code: string }[] = [];
-  for (let i = 1; i <= PLACEHOLDER_PUS_PER_WARD; i++) {
-    const num = String(i).padStart(2, "0");
-    units.push({
-      name: `${wardName} PU ${num}`,
-      pu_code: `${wardCode}-PU-${num}`,
-    });
+function loadGeography(): GeoState[] {
+  if (!fs.existsSync(GEO_DIR)) {
+    throw new Error(
+      `Missing ${GEO_DIR}. Run: node scripts/build-geography.mjs <dataset-dir>`
+    );
   }
-  return units;
+  return fs
+    .readdirSync(GEO_DIR)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => JSON.parse(fs.readFileSync(path.join(GEO_DIR, f), "utf-8")) as GeoState)
+    .sort((a, b) => a.code.localeCompare(b.code));
 }
 
 interface Counts {
@@ -240,56 +232,47 @@ interface Counts {
   states: number;
   lgas: number;
   wards: number;
-  pollingUnits: number;
   groupSpaces: number;
   lessons: number;
   badges: number;
 }
 
-function computeCounts(pilot: PilotData): Counts {
-  const pilotStates = pilot.states.filter((s) => PILOT_STATE_CODES.has(s.code));
-  const lgaCount = pilotStates.reduce((n, s) => n + s.lgas.length, 0);
-  const wardCount = pilotStates.reduce(
+function computeCounts(geo: GeoState[]): Counts {
+  const lgaCount = geo.reduce((n, s) => n + s.lgas.length, 0);
+  const wardCount = geo.reduce(
     (n, s) => n + s.lgas.reduce((m, l) => m + l.wards.length, 0),
     0
   );
-  const puCount = wardCount * PLACEHOLDER_PUS_PER_WARD;
-  const groupSpaces = ZONES.length + STATES.length + lgaCount + wardCount + puCount;
   return {
     zones: ZONES.length,
     states: STATES.length,
     lgas: lgaCount,
     wards: wardCount,
-    pollingUnits: puCount,
-    groupSpaces,
+    groupSpaces: ZONES.length + STATES.length + lgaCount + wardCount,
     lessons: LESSONS.length,
     badges: BADGES.length,
   };
 }
 
-function printDryRunReport(pilot: PilotData, counts: Counts, reason: string) {
+function printDryRunReport(geo: GeoState[], counts: Counts, reason: string) {
   console.log(`\n[seed-geo] DRY RUN (${reason}) -- no database was touched.\n`);
   console.log("Would seed:");
   console.log(`  zones:          ${counts.zones}`);
   console.log(`  states:         ${counts.states}`);
-  console.log(`  lgas:           ${counts.lgas}  (FCT + Anambra only)`);
-  console.log(`  wards:          ${counts.wards}  (FCT + Anambra only)`);
-  console.log(`  polling_units:  ${counts.pollingUnits}  (FCT + Anambra only)`);
+  console.log(`  lgas:           ${counts.lgas}`);
+  console.log(`  wards:          ${counts.wards}`);
   console.log(`  group_spaces:   ${counts.groupSpaces}`);
   console.log(`  lessons:        ${counts.lessons}`);
   console.log(`  badges:         ${counts.badges}`);
-  console.log(`\nPilot data source note (data/inec-pilot.json _meta):`);
-  for (const [k, v] of Object.entries(pilot._meta)) {
-    console.log(`  ${k}: ${v}`);
-  }
+  console.log(`\n  states with geography loaded: ${geo.length}`);
   console.log(
-    "\n⚠️  Ward and polling unit names are PLACEHOLDER data, not the real INEC register."
+    "\nGeography is derived from INEC's polling-unit register via the Nigeria 2.0"
   );
   console.log(
-    "   Replace them before this pilot's geographic data is treated as authoritative.\n"
+    "2023 collation. Polling units themselves are not seeded -- see the header."
   );
   console.log(
-    "To run for real: set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local, then run `npm run db:seed`.\n"
+    "\nTo run for real: set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local, then run `npm run db:seed`.\n"
   );
 }
 
@@ -326,7 +309,7 @@ async function fetchIdMap(
   return map;
 }
 
-async function seedForReal(pilot: PilotData) {
+async function seedForReal(geo: GeoState[]) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
   const supabase = createClient(url, serviceKey, {
@@ -346,38 +329,20 @@ async function seedForReal(pilot: PilotData) {
   );
   const stateIds = await fetchIdMap(supabase, "states", "code");
 
-  const pilotStates = pilot.states.filter((s) => PILOT_STATE_CODES.has(s.code));
-
-  console.log("[seed-geo] Seeding LGAs (FCT + Anambra)...");
-  const lgaRows = pilotStates.flatMap((s) =>
+  console.log(`[seed-geo] Seeding LGAs (${geo.length} states)...`);
+  const lgaRows = geo.flatMap((s) =>
     s.lgas.map((l) => ({ name: l.name, code: l.code, state_id: stateIds.get(s.code) }))
   );
   await upsert(supabase, "lgas", lgaRows, "code");
   const lgaIds = await fetchIdMap(supabase, "lgas", "code");
 
-  console.log("[seed-geo] Seeding wards (placeholder names)...");
-  const wardRows = pilotStates.flatMap((s) =>
+  console.log("[seed-geo] Seeding wards...");
+  const wardRows = geo.flatMap((s) =>
     s.lgas.flatMap((l) =>
       l.wards.map((w) => ({ name: w.name, code: w.code, lga_id: lgaIds.get(l.code) }))
     )
   );
   await upsert(supabase, "wards", wardRows, "code");
-  const wardIds = await fetchIdMap(supabase, "wards", "code");
-
-  console.log("[seed-geo] Seeding polling units (placeholder)...");
-  const puRows = pilotStates.flatMap((s) =>
-    s.lgas.flatMap((l) =>
-      l.wards.flatMap((w) =>
-        buildPollingUnits(w.code, w.name).map((pu) => ({
-          name: pu.name,
-          pu_code: pu.pu_code,
-          ward_id: wardIds.get(w.code),
-        }))
-      )
-    )
-  );
-  await upsert(supabase, "polling_units", puRows, "pu_code");
-  const puIds = await fetchIdMap(supabase, "polling_units", "pu_code");
 
   console.log("[seed-geo] Creating group spaces...");
   const groupSpaceRows: { scope_type: string; scope_id: string; name: string }[] = [];
@@ -387,18 +352,12 @@ async function seedForReal(pilot: PilotData) {
   for (const s of STATES) {
     groupSpaceRows.push({ scope_type: "state", scope_id: stateIds.get(s.code)!, name: s.name });
   }
-  for (const s of pilotStates) {
+  const wardIds = await fetchIdMap(supabase, "wards", "code");
+  for (const s of geo) {
     for (const l of s.lgas) {
       groupSpaceRows.push({ scope_type: "lga", scope_id: lgaIds.get(l.code)!, name: l.name });
       for (const w of l.wards) {
         groupSpaceRows.push({ scope_type: "ward", scope_id: wardIds.get(w.code)!, name: w.name });
-        for (const pu of buildPollingUnits(w.code, w.name)) {
-          groupSpaceRows.push({
-            scope_type: "pu",
-            scope_id: puIds.get(pu.pu_code)!,
-            name: pu.name,
-          });
-        }
       }
     }
   }
@@ -410,12 +369,12 @@ async function seedForReal(pilot: PilotData) {
   console.log("[seed-geo] Seeding badges...");
   await upsert(supabase, "badges", BADGES, "slug");
 
-  return computeCounts(pilot);
+  return computeCounts(geo);
 }
 
 async function main() {
-  const pilot = loadPilotData();
-  const counts = computeCounts(pilot);
+  const geo = loadGeography();
+  const counts = computeCounts(geo);
 
   const explicitDryRun = process.argv.includes("--dry-run");
   const hasCredentials = Boolean(
@@ -424,14 +383,14 @@ async function main() {
 
   if (explicitDryRun || !hasCredentials) {
     printDryRunReport(
-      pilot,
+      geo,
       counts,
       explicitDryRun ? "--dry-run flag" : "no Supabase credentials in .env.local"
     );
     return;
   }
 
-  const finalCounts = await seedForReal(pilot);
+  const finalCounts = await seedForReal(geo);
   console.log("\n[seed-geo] Done. Seeded:");
   console.log(finalCounts);
 }

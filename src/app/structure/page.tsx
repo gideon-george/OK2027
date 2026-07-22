@@ -10,7 +10,7 @@ import {
   nationalRoster,
   zoneCoverage,
 } from "@/lib/structure";
-import { hasLgaData, lgasForState } from "@/lib/geo";
+import { geoForState } from "@/lib/geo";
 
 export const metadata: Metadata = {
   title: "Structure",
@@ -113,18 +113,17 @@ export default function StructurePage() {
                 )}
                 {zone.states.map(({ state, coordinator }) => {
                   if (!coordinator) return null;
-                  const lgas = hasLgaData(state.code)
-                    ? lgasForState(state.code)
-                    : null;
+                  const geo = geoForState(state.code);
                   const extras = appointmentsForState(state.code).filter(
                     (a) => a.office.slug !== "state-coordinator"
                   );
                   return (
                     <div key={state.code} className="flex flex-col gap-2">
                       <AppointmentCard appointment={coordinator} showScope />
-                      {lgas && (
+                      {geo && (
                         <p className="text-muted-foreground px-1 text-xs">
-                          {lgas.length} LGAs on record
+                          {geo.lgas} LGAs · {geo.wards.toLocaleString()} wards ·{" "}
+                          {geo.pollingUnits.toLocaleString()} units
                         </p>
                       )}
                       {extras.map((extra) => (
@@ -151,9 +150,8 @@ export default function StructurePage() {
           <p className="text-muted-foreground pt-2 text-sm leading-relaxed">
             LGA, ward and polling-unit posts are appointed by their State
             Coordinator and appear here as each state completes its structure.
-            The movement holds LGA records for the Federal Capital Territory and
-            Anambra so far; the remaining states are pending import of the
-            official INEC register.
+            The full register is loaded: all 774 LGAs, 8,874 wards and 176,379
+            polling units across the federation.
           </p>
           <div className="flex flex-wrap gap-3 pt-4">
             <Button asChild size="sm">

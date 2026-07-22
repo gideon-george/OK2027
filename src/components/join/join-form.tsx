@@ -28,8 +28,8 @@ import { BackendNotice } from "@/components/shared/backend-notice";
 import { getSupabase } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { joinSchema, type JoinInput } from "@/lib/validators/forms";
-import { currentPolicyVersion, independenceDisclaimer } from "@/lib/site";
-import { hasLgaData, lgasForState, states } from "@/lib/geo";
+import { basePath, currentPolicyVersion, independenceDisclaimer } from "@/lib/site";
+import { states, type Lga, type StateGeography } from "@/lib/geo";
 import { stateCoordinator } from "@/lib/structure";
 
 const DRAFT_KEY = "nokm:join-draft";
@@ -73,10 +73,35 @@ export function JoinForm() {
   const stateCode = form.watch("stateCode");
   const lgaCode = form.watch("lgaCode");
 
-  const lgas = useMemo(
-    () => (stateCode ? lgasForState(stateCode) : null),
-    [stateCode]
-  );
+  const [geography, setGeography] = useState<StateGeography | null>(null);
+  const [geoLoading, setGeoLoading] = useState(false);
+
+  // One state's LGAs and wards is 6-25 kB; the full national register is
+  // 576 kB. Fetching per state keeps registration usable on metered data.
+  useEffect(() => {
+    if (!stateCode) {
+      setGeography(null);
+      return;
+    }
+    let cancelled = false;
+    setGeoLoading(true);
+    fetch(`${basePath}/geo/${stateCode}.json`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: StateGeography | null) => {
+        if (!cancelled) setGeography(data);
+      })
+      .catch(() => {
+        if (!cancelled) setGeography(null);
+      })
+      .finally(() => {
+        if (!cancelled) setGeoLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [stateCode]);
+
+  const lgas: Lga[] | null = geography?.lgas ?? null;
   const wards = useMemo(
     () => lgas?.find((l) => l.code === lgaCode)?.wards ?? null,
     [lgas, lgaCode]
@@ -363,11 +388,16 @@ export function JoinForm() {
           )}
         />
 
-        {stateCode && !hasLgaData(stateCode) && (
+        {stateCode && geoLoading && (
+          <p className="text-muted-foreground text-sm">
+            Loading local government areas…
+          </p>
+        )}
+
+        {stateCode && !geoLoading && !lgas && (
           <p className="text-muted-foreground bg-muted/40 rounded-md border p-3 text-sm">
-            The LGA and ward register for this state is still being imported.
-            Register now — your state coordinator will place you in your ward as
-            soon as the official list lands.
+            We couldn&apos;t load the LGA list for this state. You can still
+            register — your state coordinator will place you in your ward.
           </p>
         )}
 
@@ -426,8 +456,7 @@ export function JoinForm() {
                   </SelectContent>
                 </Select>
                 <FormDescription>
-                  Ward names for this state are placeholders pending the
-                  official INEC register.
+                  Ward names come from INEC&apos;s polling-unit register.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

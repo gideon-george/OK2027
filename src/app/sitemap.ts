@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site";
 import { appointments } from "@/lib/structure";
 import { lessons } from "@/lib/lessons";
+import { states, stateSlug } from "@/lib/geo";
 
 // Required by `output: "export"` — metadata routes must be static.
 export const dynamic = "force-static";
@@ -11,6 +12,7 @@ const staticRoutes = [
   { path: "/join", priority: 0.9 },
   { path: "/structure", priority: 0.9 },
   { path: "/vacancies", priority: 0.8 },
+  { path: "/baseline", priority: 0.8 },
   { path: "/action-plan", priority: 0.7 },
   { path: "/pvc", priority: 0.8 },
   { path: "/learn", priority: 0.7 },
@@ -41,6 +43,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/learn/${lesson.slug}`,
       lastModified: now,
       priority: 0.5,
+    })),
+    ...states.map((state) => ({
+      url: `${siteUrl}/baseline/${stateSlug(state)}`,
+      lastModified: now,
+      priority: 0.6,
     })),
   ];
 }

@@ -19,10 +19,16 @@ export const navLinks: NavLink[] = [
     description: "Open posts across the movement, and how to apply.",
   },
   {
+    href: "/baseline",
+    label: "2023 baseline",
+    description:
+      "Every polling unit, the register, and the voters still to be mobilised.",
+    primary: true,
+  },
+  {
     href: "/action-plan",
     label: "Action plan",
     description: "The 6-Month Victory Action Plan, week by week.",
-    primary: true,
   },
   {
     href: "/rhythm",

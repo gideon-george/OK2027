@@ -1,0 +1,306 @@
+{
+  "_meta": {
+    "source": "Nigeria 2.0 — 2023 General Election Electoral Sheets Collation (https://forensic.nigeria2.com)",
+    "derivedFrom": "Polling-unit result sheets published on INEC's IReV portal, transcribed and cross-checked by Nigeria 2.0 volunteers.",
+    "note": "Polling-unit names, codes and the ward/LGA hierarchy come from INEC's own register and are reliable. Per-party vote counts in the source are an incomplete transcription and are deliberately NOT included here.",
+    "builtBy": "scripts/build-geography.mjs"
+  },
+  "states": [
+    {
+      "code": "AB",
+      "name": "Abia",
+      "lgas": 17,
+      "wards": 184,
+      "pollingUnits": 3595,
+      "registered": 1830858
+    },
+    {
+      "code": "AD",
+      "name": "Adamawa",
+      "lgas": 21,
+      "wards": 228,
+      "pollingUnits": 4104,
+      "registered": 1976055
+    },
+    {
+      "code": "AK",
+      "name": "Akwa Ibom",
+      "lgas": 31,
+      "wards": 332,
+      "pollingUnits": 4353,
+      "registered": 2277390
+    },
+    {
+      "code": "AN",
+      "name": "Anambra",
+      "lgas": 21,
+      "wards": 329,
+      "pollingUnits": 5720,
+      "registered": 2045882
+    },
+    {
+      "code": "BA",
+      "name": "Bauchi",
+      "lgas": 20,
+      "wards": 215,
+      "pollingUnits": 5423,
+      "registered": 2692839
+    },
+    {
+      "code": "BE",
+      "name": "Benue",
+      "lgas": 23,
+      "wards": 277,
+      "pollingUnits": 5102,
+      "registered": 2573179
+    },
+    {
+      "code": "BO",
+      "name": "Borno",
+      "lgas": 27,
+      "wards": 315,
+      "pollingUnits": 5071,
+      "registered": 2452033
+    },
+    {
+      "code": "BY",
+      "name": "Bayelsa",
+      "lgas": 8,
+      "wards": 106,
+      "pollingUnits": 2244,
+      "registered": 1018931
+    },
+    {
+      "code": "CR",
+      "name": "Cross River",
+      "lgas": 18,
+      "wards": 195,
+      "pollingUnits": 3281,
+      "registered": 1756141
+    },
+    {
+      "code": "DE",
+      "name": "Delta",
+      "lgas": 25,
+      "wards": 273,
+      "pollingUnits": 5863,
+      "registered": 2868629
+    },
+    {
+      "code": "EB",
+      "name": "Ebonyi",
+      "lgas": 13,
+      "wards": 172,
+      "pollingUnits": 2946,
+      "registered": 1577610
+    },
+    {
+      "code": "ED",
+      "name": "Edo",
+      "lgas": 18,
+      "wards": 195,
+      "pollingUnits": 4519,
+      "registered": 2344675
+    },
+    {
+      "code": "EK",
+      "name": "Ekiti",
+      "lgas": 16,
+      "wards": 180,
+      "pollingUnits": 2445,
+      "registered": 987313
+    },
+    {
+      "code": "EN",
+      "name": "Enugu",
+      "lgas": 17,
+      "wards": 264,
+      "pollingUnits": 4145,
+      "registered": 2103552
+    },
+    {
+      "code": "FC",
+      "name": "Fct",
+      "lgas": 6,
+      "wards": 64,
+      "pollingUnits": 2822,
+      "registered": 1526962
+    },
+    {
+      "code": "GO",
+      "name": "Gombe",
+      "lgas": 11,
+      "wards": 115,
+      "pollingUnits": 2988,
+      "registered": 1575654
+    },
+    {
+      "code": "IM",
+      "name": "Imo",
+      "lgas": 27,
+      "wards": 308,
+      "pollingUnits": 4758,
+      "registered": 1740560
+    },
+    {
+      "code": "JI",
+      "name": "Jigawa",
+      "lgas": 27,
+      "wards": 291,
+      "pollingUnits": 4522,
+      "registered": 2120303
+    },
+    {
+      "code": "KD",
+      "name": "Kaduna",
+      "lgas": 23,
+      "wards": 257,
+      "pollingUnits": 8012,
+      "registered": 4098710
+    },
+    {
+      "code": "KE",
+      "name": "Kebbi",
+      "lgas": 21,
+      "wards": 225,
+      "pollingUnits": 3743,
+      "registered": 1869050
+    },
+    {
+      "code": "KN",
+      "name": "Kano",
+      "lgas": 44,
+      "wards": 487,
+      "pollingUnits": 11222,
+      "registered": 5362474
+    },
+    {
+      "code": "KO",
+      "name": "Kogi",
+      "lgas": 21,
+      "wards": 239,
+      "pollingUnits": 3508,
+      "registered": 1876071
+    },
+    {
+      "code": "KT",
+      "name": "Katsina",
+      "lgas": 34,
+      "wards": 362,
+      "pollingUnits": 6652,
+      "registered": 3270184
+    },
+    {
+      "code": "KW",
+      "name": "Kwara",
+      "lgas": 16,
+      "wards": 193,
+      "pollingUnits": 2887,
+      "registered": 1670711
+    },
+    {
+      "code": "LA",
+      "name": "Lagos",
+      "lgas": 20,
+      "wards": 245,
+      "pollingUnits": 13325,
+      "registered": 6843613
+    },
+    {
+      "code": "NA",
+      "name": "Nasarawa",
+      "lgas": 13,
+      "wards": 147,
+      "pollingUnits": 3256,
+      "registered": 1740025
+    },
+    {
+      "code": "NI",
+      "name": "Niger",
+      "lgas": 25,
+      "wards": 274,
+      "pollingUnits": 4950,
+      "registered": 2651128
+    },
+    {
+      "code": "OG",
+      "name": "Ogun",
+      "lgas": 20,
+      "wards": 236,
+      "pollingUnits": 5042,
+      "registered": 2675221
+    },
+    {
+      "code": "ON",
+      "name": "Ondo",
+      "lgas": 18,
+      "wards": 203,
+      "pollingUnits": 3933,
+      "registered": 1991191
+    },
+    {
+      "code": "OS",
+      "name": "Osun",
+      "lgas": 30,
+      "wards": 334,
+      "pollingUnits": 3763,
+      "registered": 1942096
+    },
+    {
+      "code": "OY",
+      "name": "Oyo",
+      "lgas": 33,
+      "wards": 355,
+      "pollingUnits": 6390,
+      "registered": 3175847
+    },
+    {
+      "code": "PL",
+      "name": "Plateau",
+      "lgas": 17,
+      "wards": 210,
+      "pollingUnits": 4989,
+      "registered": 2774049
+    },
+    {
+      "code": "RI",
+      "name": "Rivers",
+      "lgas": 23,
+      "wards": 319,
+      "pollingUnits": 6866,
+      "registered": 2820166
+    },
+    {
+      "code": "SO",
+      "name": "Sokoto",
+      "lgas": 23,
+      "wards": 246,
+      "pollingUnits": 3991,
+      "registered": 1813144
+    },
+    {
+      "code": "TA",
+      "name": "Taraba",
+      "lgas": 16,
+      "wards": 170,
+      "pollingUnits": 3597,
+      "registered": 1572513
+    },
+    {
+      "code": "YO",
+      "name": "Yobe",
+      "lgas": 17,
+      "wards": 179,
+      "pollingUnits": 2823,
+      "registered": 1364558
+    },
+    {
+      "code": "ZA",
+      "name": "Zamfara",
+      "lgas": 14,
+      "wards": 150,
+      "pollingUnits": 3529,
+      "registered": 1532265
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import lgaData from "../../data/inec-pilot.json";
+import geoIndex from "../../data/geo-index.json";
 
 export type ZoneCode = "NC" | "NE" | "NW" | "SE" | "SS" | "SW" | "DIASPORA";
 
@@ -111,17 +111,50 @@ export function stateSlug(state: NgState): string {
 }
 
 // ---------------------------------------------------------------------------
-// LGA / ward detail
+// LGA / ward coverage
 //
-// Only two states currently carry imported LGA data. The remaining 35 are
-// pending the official INEC register — see docs/TODO-real-data.md. Nothing in
-// the UI may imply coverage the movement does not have.
+// Derived from INEC's own polling-unit register, by way of the Nigeria 2.0
+// 2023 collation: all 774 LGAs, 8,874 wards and 176,379 polling units.
+//
+// Only the compact per-state index is imported here. Full LGA and ward lists
+// live in public/geo/<CODE>.json and are fetched on demand — shipping 576 kB
+// of geography to every visitor would defeat the mobile budget.
 // ---------------------------------------------------------------------------
 
+export interface StateGeoSummary {
+  code: string;
+  name: string;
+  lgas: number;
+  wards: number;
+  pollingUnits: number;
+  /** Registered voters recorded across units whose 2023 sheet was located. */
+  registered: number;
+}
+
+export const geoMeta = geoIndex._meta;
+
+export const stateGeoSummaries: StateGeoSummary[] = geoIndex.states;
+
+const geoByCode = new Map(stateGeoSummaries.map((s) => [s.code, s]));
+
+export function geoForState(code: string): StateGeoSummary | undefined {
+  return geoByCode.get(code);
+}
+
+export const nationalGeo = stateGeoSummaries.reduce(
+  (acc, s) => ({
+    lgas: acc.lgas + s.lgas,
+    wards: acc.wards + s.wards,
+    pollingUnits: acc.pollingUnits + s.pollingUnits,
+    registered: acc.registered + s.registered,
+  }),
+  { lgas: 0, wards: 0, pollingUnits: 0, registered: 0 }
+);
+
+/** Ward and LGA lists for one state, fetched from the static export. */
 export interface Ward {
   name: string;
   code: string;
-  placeholder?: boolean;
 }
 
 export interface Lga {
@@ -131,20 +164,11 @@ export interface Lga {
 }
 
 export interface StateGeography {
-  name: string;
   code: string;
+  name: string;
   lgas: Lga[];
 }
 
-export const statesWithLgaData: StateGeography[] = lgaData.states;
-
-export const lgaDataMeta = lgaData._meta;
-
-export function lgasForState(code: string): Lga[] | null {
-  return statesWithLgaData.find((s) => s.code === code)?.lgas ?? null;
-}
-
-/** True when the repository holds LGA/ward records for a state. */
-export function hasLgaData(code: string): boolean {
-  return statesWithLgaData.some((s) => s.code === code);
+export function stateGeographyUrl(code: string, base: string): string {
+  return `${base}/geo/${code}.json`;
 }

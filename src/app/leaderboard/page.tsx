@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/table";
 import { LiveScoreboard } from "@/components/leaderboard/live-scoreboard";
 import { zoneCoverage } from "@/lib/structure";
-import { hasLgaData, states, statesByCode } from "@/lib/geo";
+import { geoForState, states, statesByCode } from "@/lib/geo";
 import { stateCoordinator } from "@/lib/structure";
 
 export const metadata: Metadata = {
@@ -111,7 +111,7 @@ export default function LeaderboardPage() {
                 <TableHead>State</TableHead>
                 <TableHead>Zone</TableHead>
                 <TableHead>Coordinator</TableHead>
-                <TableHead>LGA records</TableHead>
+                <TableHead className="text-right">Polling units</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -142,8 +142,9 @@ export default function LeaderboardPage() {
                         <span className="text-brand-red">Vacant</span>
                       )}
                     </TableCell>
-                    <TableCell className="text-muted-foreground">
-                      {hasLgaData(state.code) ? "On file" : "Pending import"}
+                    <TableCell className="text-muted-foreground text-right tabular-nums">
+                      {geoForState(state.code)?.pollingUnits.toLocaleString() ??
+                        "—"}
                     </TableCell>
                   </TableRow>
                 );

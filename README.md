@@ -21,6 +21,7 @@ record that persists.
 
 | | |
 |---|---|
+| `/baseline` | Every polling unit in Nigeria, the 2023 register and turnout, and the 63.2M registered voters who did not vote. |
 | `/structure` | Every national, zonal and state office. 70 posts, filled and vacant. |
 | `/vacancies` | Open posts with an application and vetting flow. |
 | `/join` | Member registration, placed down to ward level. |
@@ -49,6 +50,36 @@ middleware, and every dynamic route has `generateStaticParams()`.
 **The site is fully functional before Supabase exists.** Public pages render
 from committed seed data (`data/nokm-structure.json`); database-backed features
 detect that no project is configured and say so plainly instead of failing.
+
+## Election data
+
+Geography and the 2023 baseline are derived from the
+[Nigeria 2.0 2023 Electoral Sheets Collation](https://forensic.nigeria2.com/) —
+an open dataset transcribed by volunteers from the polling-unit result sheets
+INEC published on its IReV portal, and released openly at
+[nigeria2.com](https://nigeria2.com/elections/results/). **NOkM is not
+affiliated with Nigeria 2.0.**
+
+Rebuild it with:
+
+```bash
+node scripts/build-geography.mjs <path-to-extracted-dataset>
+```
+
+That produces `data/geo-index.json`, `data/baseline-2023.json`,
+`data/baseline-lga/*.json` and `public/geo/*.json` (fetched per state by
+`/join`, 6–25 kB each rather than 576 kB bundled).
+
+**Per-party vote counts are excluded on purpose.** The source columns capture
+between 76% and 102% of each party's official national total, and in some
+states under 3% of sheets were validated — publishing them would put easily
+disproved numbers on a political website. The script reads those columns only
+to discard them. See `docs/TODO-real-data.md` for the full comparison table.
+
+What *is* published is the reliable part: the polling-unit register, registered
+and accredited voters, and how complete the published result-sheet record was.
+That last figure describes the documentation, not any result, and carries no
+claim about any person or party.
 
 ## Data protection
 
@@ -141,6 +172,15 @@ and fill it in. Without them the site runs fine in a read-only mode.
 
 5. Load officer phone numbers separately, from a local file that is **not** in
    this repository, into `officer_contacts`.
+
+### Deploying to Vercel
+
+`vercel.json` sets `NEXT_PUBLIC_BASE_PATH=""` at build time so Vercel serves
+from the root while GitHub Pages keeps working under `/OK2027`. Import the
+repository at [vercel.com/new](https://vercel.com/new) — no settings need
+changing. After the first deploy, set `NEXT_PUBLIC_APP_URL` in the Vercel
+project's environment variables to the live URL so the sitemap and link
+previews resolve correctly, then redeploy.
 
 ### Moving to a custom domain
 
