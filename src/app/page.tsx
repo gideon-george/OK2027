@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { BookOpen, MapPin, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  IdCard,
+  Megaphone,
+  Network,
+  Trophy,
+  UserPlus,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,92 +16,231 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { lessons } from "@/lib/lessons";
+import { StatTile } from "@/components/shared/stat-tile";
+import { coverage } from "@/lib/structure";
+import { independenceDisclaimer, principals, site } from "@/lib/site";
 
 const pillars = [
   {
+    title: "Mobilize",
+    description:
+      "Register members and drive turnout, polling unit by polling unit.",
+  },
+  {
+    title: "Organize",
+    description:
+      "A working structure from national leadership down to every ward.",
+  },
+  {
+    title: "Educate",
+    description:
+      "Civic education so every member knows the process and their rights.",
+  },
+  {
+    title: "Deliver victory",
+    description:
+      "Turn structure and knowledge into votes counted on election day.",
+  },
+];
+
+const routes = [
+  {
+    icon: Network,
+    title: "The structure",
+    href: "/structure",
+    description:
+      "Every national, zonal and state office — who holds it, and which are open.",
+  },
+  {
+    icon: IdCard,
+    title: "PVC drive",
+    href: "/pvc",
+    description:
+      "Your PVC is the key. Register, collect it, and track the movement's progress.",
+  },
+  {
     icon: BookOpen,
-    title: "Learn",
+    title: "Civic education",
     href: "/learn",
     description:
-      "Eight practical civic-education lessons: from getting your PVC to reading a result sheet.",
+      "Eight practical lessons, from getting your PVC to reading a result sheet.",
   },
   {
-    icon: MapPin,
-    title: "Find your unit",
-    href: "/network",
+    icon: Megaphone,
+    title: "6-month action plan",
+    href: "/action-plan",
     description:
-      "Nigeria votes polling unit by polling unit. Explore the pilot network across FCT and Anambra.",
+      "What the movement is doing between now and the general election.",
   },
   {
-    icon: Users,
-    title: "Organise",
-    href: "/about",
+    icon: Trophy,
+    title: "Leaderboard",
+    href: "/leaderboard",
     description:
-      "Neighbours who know each other and show up together are the strongest civic force in the country.",
+      "How each state and LGA is performing on members, structures and reports.",
+  },
+  {
+    icon: UserPlus,
+    title: "Vacancies",
+    href: "/vacancies",
+    description:
+      "Open coordinator posts across the federation. Step forward and serve.",
   },
 ];
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-5xl px-4">
-      <section className="flex flex-col items-center gap-6 py-20 text-center">
-        <Badge variant="outline" className="border-primary/40 text-primary">
-          Pilot — FCT &amp; Anambra
-        </Badge>
-        <h1 className="font-display max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
-          Your vote is a plan,{" "}
-          <span className="text-primary">not a wish.</span>
-        </h1>
-        <p className="max-w-2xl text-lg text-muted-foreground">
-          OK2027 is a community for Nigerians organising peacefully ahead of
-          the 2027 elections — supporters of Peter Obi, Rabiu Kwankwaso, and
-          everyone who believes participation beats complaint.
+    <div>
+      <section className="border-b">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:py-24">
+          <Badge
+            variant="outline"
+            className="border-brand-red/40 text-brand-red"
+          >
+            Towards the 2027 general election
+          </Badge>
+
+          <h1 className="font-display max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-6xl">
+            One movement. One goal.{" "}
+            <span className="text-brand-blue">A new Nigeria.</span>
+          </h1>
+
+          <p className="text-muted-foreground max-w-2xl text-lg text-pretty">
+            The National OK Movement organises Nigerians — ward by ward, polling
+            unit by polling unit — behind{" "}
+            <strong className="text-foreground font-medium">Peter Obi</strong>{" "}
+            and{" "}
+            <strong className="text-foreground font-medium">
+              Rabiu Kwankwaso
+            </strong>
+            . The &ldquo;O&rdquo; and the &ldquo;K&rdquo;.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button asChild size="lg">
+              <Link href="/join">
+                Join the movement <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/structure">See the structure</Link>
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-2">
+            {principals.map((p) => (
+              <span key={p.name} className="text-muted-foreground text-sm">
+                <strong className="text-foreground font-semibold">
+                  {p.name}
+                </strong>{" "}
+                — {p.office}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 pb-4">
+          <h2 className="font-display text-2xl font-bold">Where we stand</h2>
+          <Link
+            href="/structure"
+            className="text-primary text-sm hover:underline"
+          >
+            Full structure →
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <StatTile
+            tone="blue"
+            value={`${coverage.nationalFilled}/${coverage.nationalTotal}`}
+            label="National offices"
+            hint="Filled of established"
+          />
+          <StatTile
+            tone="blue"
+            value={`${coverage.zonesFilled}/${coverage.zonesTotal}`}
+            label="Zones covered"
+            hint="Zonal coordinators in post"
+          />
+          <StatTile
+            tone="blue"
+            value={`${coverage.statesFilled}/${coverage.statesTotal}`}
+            label="States covered"
+            hint="36 states and the FCT"
+          />
+          <StatTile
+            tone="red"
+            value={coverage.vacanciesTotal}
+            label="Posts open"
+            hint="Apply and serve"
+          />
+        </div>
+        <p className="text-muted-foreground pt-3 text-xs">
+          Structure figures come from the official roster. Membership figures
+          appear here once member registration goes live.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Button asChild size="lg">
-            <Link href="/learn">Start learning</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="/network">Explore the network</Link>
-          </Button>
+      </section>
+
+      <section className="bg-accent/40 border-y">
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          <h2 className="font-display text-2xl font-bold">
+            How the movement works
+          </h2>
+          <p className="text-muted-foreground pt-1 text-sm">{site.motto}</p>
+          <div className="grid gap-4 pt-6 sm:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((pillar, i) => (
+              <div
+                key={pillar.title}
+                className="bg-background rounded-lg border p-4"
+              >
+                <span className="text-brand-red font-display text-sm font-bold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display pt-1 text-lg font-semibold">
+                  {pillar.title}
+                </h3>
+                <p className="text-muted-foreground pt-1 text-sm">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-4 pb-16 sm:grid-cols-3">
-        {pillars.map((pillar) => (
-          <Link key={pillar.href} href={pillar.href} className="group">
-            <Card className="h-full transition-colors group-hover:border-primary/50">
-              <CardHeader>
-                <pillar.icon className="mb-2 size-6 text-primary" />
-                <CardTitle className="font-display">{pillar.title}</CardTitle>
-                <CardDescription>{pillar.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
-        ))}
-      </section>
-
-      <section className="border-t py-16">
-        <div className="flex items-baseline justify-between pb-6">
-          <h2 className="font-display text-2xl font-bold">Start with a lesson</h2>
-          <Link href="/learn" className="text-sm text-primary hover:underline">
-            View all →
-          </Link>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {lessons.slice(0, 4).map((lesson) => (
-            <Link key={lesson.slug} href={`/learn/${lesson.slug}`} className="group">
-              <Card className="h-full transition-colors group-hover:border-primary/50">
+      <section className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="font-display pb-6 text-2xl font-bold">Start here</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {routes.map((route) => (
+            <Link key={route.href} href={route.href} className="group">
+              <Card className="group-hover:border-primary/50 h-full transition-colors">
                 <CardHeader>
-                  <CardTitle className="text-base">
-                    {lesson.orderIndex}. {lesson.title}
-                  </CardTitle>
-                  <CardDescription>{lesson.summary}</CardDescription>
+                  <route.icon className="text-brand-blue mb-2 size-6" />
+                  <CardTitle className="font-display">{route.title}</CardTitle>
+                  <CardDescription>{route.description}</CardDescription>
                 </CardHeader>
               </Card>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-4 pb-16">
+        <div className="rounded-lg border p-6">
+          <h2 className="font-display text-lg font-semibold">
+            What NOkM is — and is not
+          </h2>
+          <p className="text-muted-foreground pt-2 text-sm leading-relaxed">
+            {independenceDisclaimer}
+          </p>
+          <p className="text-muted-foreground pt-2 text-sm leading-relaxed">
+            Membership is voluntary and free. Everything the movement does is
+            peaceful, lawful and within INEC regulations.
+          </p>
+          <Button asChild variant="outline" size="sm" className="mt-4">
+            <Link href="/about">Read how we operate</Link>
+          </Button>
         </div>
       </section>
     </div>

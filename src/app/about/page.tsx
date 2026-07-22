@@ -1,68 +1,141 @@
 import type { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  conductDisclaimer,
+  independenceDisclaimer,
+  principals,
+  site,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What OK2027 is, the principles it runs on, and where the project is headed.",
+    "What the National OK Movement is, how it operates, and its relationship with the Nigeria Democratic Congress.",
 };
+
+const purpose = [
+  {
+    title: "Mobilization",
+    description:
+      "Register members, mobilise voters, and drive turnout at ward and polling-unit level.",
+  },
+  {
+    title: "Coordination",
+    description:
+      "Maintain a structured ladder from National to Zonal, State, LGA, Ward and Unit so no community is left out.",
+  },
+  {
+    title: "Advocacy & sensitization",
+    description:
+      "Communicate the vision, policies and activities of the principals the movement supports.",
+  },
+  {
+    title: "Feedback loop",
+    description:
+      "Carry grassroots concerns back up to leadership so decisions are made with the ground in view.",
+  },
+];
 
 const principles = [
   {
-    title: "Participation over complaint",
+    title: "Voluntary membership",
     description:
-      "The app celebrates showing up: registering, learning, organising, voting. Energy goes into turnout, not arguments.",
+      "Anyone who believes in the vision may join. No coercion, and no fee required to participate.",
   },
   {
-    title: "Facts, clearly labelled",
+    title: "Non-conflict with party structure",
     description:
-      "Anything documented must be evidence-based — photo, place, and time — and is always marked verified or unverified. Unverified never masquerades as verified.",
+      "We work with party structures where they exist. We never replace elected party executives.",
   },
   {
-    title: "Never confrontation",
+    title: "Discipline & accountability",
     description:
-      "Nothing in OK2027 encourages confronting anyone. De-escalation and personal safety come before any document, photo, or result.",
+      "Every appointed executive must show visible engagement, mobilisation and financial accountability at their level.",
+  },
+  {
+    title: "Non-violence",
+    description:
+      "All activity is peaceful, lawful and within INEC regulations. De-escalation always comes first.",
+  },
+  {
+    title: "One person, one position",
+    description:
+      "No double office-holding across levels, so nobody's loyalties are divided and nobody blocks two seats.",
   },
   {
     title: "Privacy by default",
     description:
-      "Sensitive identifiers like PVC numbers and phone numbers are never stored in plaintext. What isn't needed isn't collected.",
+      "PVC and VIN numbers are never collected. Officer phone numbers are never published. What isn't needed isn't kept.",
   },
-];
-
-const badges = [
-  { emoji: "✅", name: "Verified Voter", description: "Verified your PVC." },
-  { emoji: "🛡️", name: "PU Champion", description: "Claimed and represents a polling unit." },
-  { emoji: "📣", name: "Recruiter", description: "Brought new members into the community." },
-  { emoji: "🎓", name: "Civic Scholar", description: "Completed all civic education lessons." },
-  { emoji: "🌱", name: "Day-One", description: "Joined during the pilot phase." },
-  { emoji: "🦸", name: "Election-Day Hero", description: "Actively participated on election day." },
 ];
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="font-display text-3xl font-bold tracking-tight">
-        About OK2027
+      <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        About the movement
       </h1>
-      <div className="space-y-4 pt-4 leading-relaxed">
+
+      <div className="space-y-4 pt-5 leading-relaxed">
         <p>
-          OK2027 is an independent community project for Nigerians organising
-          peacefully ahead of the 2027 general elections. It grew out of the
-          energy behind Peter Obi&apos;s and Rabiu Kwankwaso&apos;s movements —
-          the &ldquo;O&rdquo; and the &ldquo;K&rdquo; — and it is open to
-          everyone who believes participation beats complaint.
+          The {site.fullName} — NOkM — is an independent grassroots support
+          movement working for{" "}
+          {principals.map((p, i) => (
+            <span key={p.name}>
+              <strong className="font-semibold">{p.name}</strong> as {p.office}
+              {i === 0 ? " and " : ""}
+            </span>
+          ))}{" "}
+          in Nigeria&apos;s 2027 general election. The &ldquo;OK&rdquo; in the
+          name is the two of them: Obi and Kwankwaso.
         </p>
         <p>
-          The project is running as a small pilot: the Federal Capital
-          Territory and Anambra State, targeting five thousand members. Start
-          small, work properly, then grow.
+          The movement organises through a single chain — National, Zonal,
+          State, LGA, Ward, Polling Unit — plus a diaspora directorate for
+          Nigerians abroad. Directives travel down it. Reports travel back up it
+          every week.
         </p>
+        <p className="text-muted-foreground text-sm">{site.motto}</p>
       </div>
 
       <section className="pt-10">
-        <h2 className="font-display pb-4 text-xl font-semibold">Principles</h2>
+        <h2 className="font-display pb-4 text-xl font-semibold">
+          What we exist to do
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {purpose.map((item) => (
+            <Card key={item.title}>
+              <CardHeader>
+                <CardTitle className="text-base">{item.title}</CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="pt-10">
+        <h2 className="font-display pb-3 text-xl font-semibold">
+          Our relationship with the NDC
+        </h2>
+        <div className="space-y-3 leading-relaxed">
+          <p>{independenceDisclaimer}</p>
+          <p>
+            We align with the party&apos;s candidates and programmes, but our
+            internal appointments, structure and operations are managed by NOkM
+            leadership. All our materials carry &ldquo;National OK Movement —
+            NDC NOkM&rdquo; so nobody mistakes them for official party
+            materials.
+          </p>
+        </div>
+      </section>
+
+      <section className="pt-10">
+        <h2 className="font-display pb-4 text-xl font-semibold">
+          How we operate
+        </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {principles.map((principle) => (
             <Card key={principle.title}>
@@ -76,40 +149,36 @@ export default function AboutPage() {
       </section>
 
       <section className="pt-10">
-        <div className="flex items-center gap-2 pb-4">
-          <h2 className="font-display text-xl font-semibold">
-            Community badges
-          </h2>
-          <Badge variant="outline">coming with accounts</Badge>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {badges.map((badge) => (
-            <div
-              key={badge.name}
-              className="flex items-start gap-3 rounded-lg border p-3"
-            >
-              <span className="text-xl">{badge.emoji}</span>
-              <div>
-                <p className="text-sm font-medium">{badge.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  {badge.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <h2 className="font-display pb-3 text-xl font-semibold">
+          Conduct and safety
+        </h2>
+        <p className="leading-relaxed">{conductDisclaimer}</p>
+        <p className="text-muted-foreground pt-2 leading-relaxed">
+          No officer of the movement will ever ask you for your PVC number, your
+          BVN, your bank details or money in exchange for a position. If someone
+          contacts you claiming to be NOkM and asks for any of these, it is not
+          us — report it through the structure directory.
+        </p>
       </section>
 
       <section className="pt-10">
-        <h2 className="font-display pb-3 text-xl font-semibold">
-          What&apos;s next
-        </h2>
-        <p className="leading-relaxed text-muted-foreground">
-          This site is the first public step. Accounts, polling-unit community
-          spaces, events, and member profiles arrive as the pilot backend comes
-          online. The civic education library and network map work today — no
-          sign-up needed.
-        </p>
+        <div className="rounded-lg border p-6">
+          <h2 className="font-display text-lg font-semibold">
+            Come and do the work
+          </h2>
+          <p className="text-muted-foreground pt-2 text-sm leading-relaxed">
+            Structure is built by people who show up. Register in your ward, or
+            take one of the open coordinator posts.
+          </p>
+          <div className="flex flex-wrap gap-3 pt-4">
+            <Button asChild size="sm">
+              <Link href="/join">Join the movement</Link>
+            </Button>
+            <Button asChild size="sm" variant="outline">
+              <Link href="/vacancies">See open posts</Link>
+            </Button>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
+import { basePath, site, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -15,17 +16,31 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "OK2027 — Civic participation for 2027",
-    template: "%s | OK2027",
+    default: `${site.name} — ${site.fullName}`,
+    template: `%s | ${site.name}`,
   },
-  description:
-    "A community and civic-participation app for Nigerian supporters ahead of the 2027 elections. Learn, organise your polling unit, and participate peacefully.",
-  manifest: "/OK2027/manifest.json",
+  description: site.description,
+  applicationName: site.fullName,
+  manifest: `${basePath}/manifest.json`,
+  // Distribution happens by WhatsApp forward, so link previews are a feature.
+  openGraph: {
+    type: "website",
+    siteName: site.fullName,
+    title: `${site.name} — ${site.fullName}`,
+    description: site.description,
+    locale: "en_NG",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.fullName}`,
+    description: site.description,
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B7A3B",
+  themeColor: "#1a3a8f",
 };
 
 export default function RootLayout({
@@ -38,8 +53,16 @@ export default function RootLayout({
       <body
         className={`${bricolageGrotesque.variable} ${dmSans.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
+        <a
+          href="#main"
+          className="focus:bg-background sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-md focus:border focus:px-3 focus:py-2 focus:text-sm"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

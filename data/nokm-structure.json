@@ -1,0 +1,670 @@
+{
+  "_meta": {
+    "source": "docs/nokm-framework.md — NOkM National Leadership circulars and the official executive unveiling",
+    "note": "Officeholders are recorded by NAME AND ROLE ONLY. Phone numbers and any other contact details are NEVER stored in this repository — they belong in the officer_contacts table in Supabase behind row-level security. See docs/nokm-framework.md section 7.",
+    "generated_for": "2027 Nigerian general election cycle"
+  },
+
+  "offices": [
+    {
+      "slug": "national-coordinator",
+      "title": "National Coordinator",
+      "shortTitle": "National Coordinator",
+      "scopeLevel": "national",
+      "rank": 1,
+      "mandate": "Overall leader and chief executive of the movement. Provides vision, direction, leadership and policy guidance, presides over national meetings, and supervises every structure from national down to polling unit.",
+      "duties": [
+        "Coordinate all national activities",
+        "Approve appointments and committees",
+        "Build strategic alliances and partnerships",
+        "Ensure organisational unity and discipline",
+        "Represent the movement nationally and internationally"
+      ],
+      "kpis": [
+        "Membership growth nationwide",
+        "Number of functional structures established",
+        "Programme implementation success rate",
+        "Stakeholder engagement rate",
+        "Organisational stability index"
+      ]
+    },
+    {
+      "slug": "national-secretary",
+      "title": "National Secretary",
+      "shortTitle": "Secretary",
+      "scopeLevel": "national",
+      "rank": 2,
+      "mandate": "Administrative head of the movement and custodian of records and correspondence.",
+      "duties": [
+        "Prepare agendas and minutes",
+        "Maintain the membership database",
+        "Issue official communications",
+        "Coordinate reports from all departments"
+      ],
+      "kpis": [
+        "Timely circulation of reports",
+        "Accuracy of records",
+        "Meeting implementation rate",
+        "Response time to correspondence"
+      ]
+    },
+    {
+      "slug": "national-publicity-secretary",
+      "title": "National Publicity Secretary",
+      "shortTitle": "Publicity Secretary",
+      "scopeLevel": "national",
+      "rank": 3,
+      "mandate": "Image management and public communication for the movement.",
+      "duties": [
+        "Handle media relations",
+        "Prepare press releases",
+        "Manage publicity campaigns",
+        "Promote organisational achievements"
+      ],
+      "kpis": [
+        "Media mentions",
+        "Social media engagement",
+        "Public awareness growth",
+        "Positive brand perception"
+      ]
+    },
+    {
+      "slug": "national-financial-secretary",
+      "title": "National Financial Secretary",
+      "shortTitle": "Financial Secretary",
+      "scopeLevel": "national",
+      "rank": 4,
+      "mandate": "Financial administration of the movement.",
+      "duties": [
+        "Maintain financial records",
+        "Process payments",
+        "Prepare financial statements",
+        "Track donations and contributions"
+      ],
+      "kpis": [
+        "Financial reporting accuracy",
+        "Revenue growth",
+        "Compliance rate",
+        "Audit readiness"
+      ]
+    },
+    {
+      "slug": "national-treasurer",
+      "title": "National Treasurer",
+      "shortTitle": "Treasurer",
+      "scopeLevel": "national",
+      "rank": 5,
+      "mandate": "Custodian of organisational funds.",
+      "duties": [
+        "Secure all funds",
+        "Maintain banking relationships",
+        "Verify financial transactions",
+        "Reconcile accounts"
+      ],
+      "kpis": [
+        "Fund accountability",
+        "Cash flow management",
+        "Zero financial irregularities"
+      ]
+    },
+    {
+      "slug": "national-woman-leader",
+      "title": "National Woman Leader",
+      "shortTitle": "Woman Leader",
+      "scopeLevel": "national",
+      "rank": 6,
+      "mandate": "Mobilise women nationwide and build women's structures at every level.",
+      "duties": [
+        "Build women's structures",
+        "Organise women's empowerment programmes",
+        "Coordinate female participation"
+      ],
+      "kpis": [
+        "Female membership growth",
+        "Women's leadership participation",
+        "Number of women's programmes conducted"
+      ]
+    },
+    {
+      "slug": "national-editor-auditor",
+      "title": "National Editor / Auditor",
+      "shortTitle": "Editor / Auditor",
+      "scopeLevel": "national",
+      "rank": 7,
+      "mandate": "Internal auditing and documentation.",
+      "duties": [
+        "Audit finances and activities",
+        "Verify reports",
+        "Edit correspondence and documents",
+        "Publish organisational publications"
+      ],
+      "kpis": [
+        "Audit completion rate",
+        "Error detection rate",
+        "Compliance monitoring"
+      ]
+    },
+    {
+      "slug": "national-director-welfare",
+      "title": "National Director of Welfare",
+      "shortTitle": "Director of Welfare",
+      "scopeLevel": "national",
+      "rank": 8,
+      "mandate": "Members' welfare and support.",
+      "duties": [
+        "Coordinate welfare interventions",
+        "Support members during emergencies",
+        "Manage welfare funds"
+      ],
+      "kpis": [
+        "Member satisfaction rate",
+        "Welfare response time",
+        "Number of beneficiaries assisted"
+      ]
+    },
+    {
+      "slug": "national-director-mobilization",
+      "title": "National Director of Mobilization, Elections & Campaign Strategy",
+      "shortTitle": "Director of Mobilization",
+      "scopeLevel": "national",
+      "rank": 9,
+      "mandate": "Grassroots mobilisation and electoral strategy.",
+      "duties": [
+        "Design membership drives",
+        "Coordinate campaigns",
+        "Develop voter engagement strategies"
+      ],
+      "kpis": [
+        "Membership recruitment numbers",
+        "Event attendance",
+        "Campaign effectiveness"
+      ]
+    },
+    {
+      "slug": "national-organizing-secretary",
+      "title": "National Organizing Secretary",
+      "shortTitle": "Organizing Secretary",
+      "scopeLevel": "national",
+      "rank": 10,
+      "mandate": "Organisational development across every level of the movement.",
+      "duties": [
+        "Structure all levels",
+        "Coordinate meetings and conferences",
+        "Ensure operational efficiency"
+      ],
+      "kpis": [
+        "Functional structures created",
+        "Meeting success rate",
+        "Organisational compliance"
+      ]
+    },
+    {
+      "slug": "national-ex-officio",
+      "title": "National Ex-Officio",
+      "shortTitle": "Ex-Officio",
+      "scopeLevel": "national",
+      "rank": 11,
+      "mandate": "Advisory and oversight functions on behalf of the membership.",
+      "duties": [
+        "Monitor executive activities",
+        "Represent members' interests",
+        "Provide strategic advice"
+      ],
+      "kpis": [
+        "Oversight reports",
+        "Conflict resolution contributions"
+      ]
+    },
+    {
+      "slug": "national-director-security-strategy",
+      "title": "National Director of Security & Strategy",
+      "shortTitle": "Director of Security & Strategy",
+      "scopeLevel": "national",
+      "rank": 12,
+      "mandate": "Organisational security and risk management, including vetting of key officers and protection of organisational data.",
+      "duties": [
+        "Conduct security assessments",
+        "Vet key officers",
+        "Develop security protocols",
+        "Manage intelligence gathering",
+        "Protect organisational assets and data",
+        "Coordinate event security plans"
+      ],
+      "kpis": [
+        "Security incidents prevented",
+        "Security compliance rate",
+        "Risk mitigation effectiveness"
+      ]
+    },
+    {
+      "slug": "national-director-students",
+      "title": "National Director of SUGs / Students Affairs",
+      "shortTitle": "Director of Students Affairs",
+      "scopeLevel": "national",
+      "rank": 13,
+      "mandate": "Student engagement nationwide and campus chapter development.",
+      "duties": [
+        "Build campus chapters",
+        "Coordinate student outreach",
+        "Organise campus programmes"
+      ],
+      "kpis": [
+        "Active campus chapters",
+        "Student membership growth",
+        "Student event participation"
+      ]
+    },
+    {
+      "slug": "national-director-strategy-research",
+      "title": "National Director of Strategy & Research",
+      "shortTitle": "Director of Strategy & Research",
+      "scopeLevel": "national",
+      "rank": 14,
+      "mandate": "Policy development and research to support leadership decision-making.",
+      "duties": [
+        "Conduct surveys and studies",
+        "Analyse trends",
+        "Develop strategic recommendations"
+      ],
+      "kpis": [
+        "Research reports produced",
+        "Strategy implementation rate",
+        "Decision support effectiveness"
+      ]
+    },
+    {
+      "slug": "national-director-artisans",
+      "title": "National Director of Artisans & Informal Sector",
+      "shortTitle": "Director of Artisans",
+      "scopeLevel": "national",
+      "rank": 15,
+      "mandate": "Engagement of artisans and informal-sector workers.",
+      "duties": [
+        "Build sectoral networks",
+        "Coordinate outreach programmes",
+        "Identify sector challenges"
+      ],
+      "kpis": [
+        "Membership from sector",
+        "Partnerships established"
+      ]
+    },
+    {
+      "slug": "national-director-diaspora",
+      "title": "National Director of Diaspora Affairs",
+      "shortTitle": "Director of Diaspora Affairs",
+      "scopeLevel": "diaspora",
+      "rank": 16,
+      "mandate": "Diaspora engagement and country-chapter development.",
+      "duties": [
+        "Establish diaspora chapters",
+        "Coordinate international members",
+        "Manage diaspora relations"
+      ],
+      "kpis": [
+        "Active diaspora chapters",
+        "Diaspora membership growth",
+        "Diaspora fundraising support"
+      ]
+    },
+    {
+      "slug": "national-chief-whip",
+      "title": "National Chief Whip / Disciplinary Officer",
+      "shortTitle": "Chief Whip",
+      "scopeLevel": "national",
+      "rank": 17,
+      "mandate": "Discipline and compliance across the movement.",
+      "duties": [
+        "Enforce the code of conduct",
+        "Investigate misconduct",
+        "Recommend sanctions"
+      ],
+      "kpis": [
+        "Resolution of disciplinary cases",
+        "Compliance rate",
+        "Reduction in infractions"
+      ]
+    },
+    {
+      "slug": "national-director-programs-events",
+      "title": "National Director of Programs & Events",
+      "shortTitle": "Director of Programs & Events",
+      "scopeLevel": "national",
+      "rank": 18,
+      "mandate": "Planning and execution of movement programmes.",
+      "duties": [
+        "Coordinate conferences",
+        "Manage logistics",
+        "Evaluate events"
+      ],
+      "kpis": [
+        "Successful events delivered",
+        "Attendance rate",
+        "Stakeholder satisfaction"
+      ]
+    },
+    {
+      "slug": "national-director-professionals",
+      "title": "National Director of Professionals",
+      "shortTitle": "Director of Professionals",
+      "scopeLevel": "national",
+      "rank": 19,
+      "mandate": "Engage professionals nationwide and build professional networks.",
+      "duties": [
+        "Build professional networks",
+        "Coordinate sector engagements"
+      ],
+      "kpis": [
+        "Professional membership growth",
+        "Strategic partnerships"
+      ]
+    },
+    {
+      "slug": "national-director-non-indigenes",
+      "title": "National Director of Non-Indigenes",
+      "shortTitle": "Director of Non-Indigenes",
+      "scopeLevel": "national",
+      "rank": 20,
+      "mandate": "Inclusion and integration of non-indigenes in every state structure.",
+      "duties": [
+        "Engage non-indigenes",
+        "Promote diversity and unity"
+      ],
+      "kpis": [
+        "Membership diversity index",
+        "Inclusion programmes conducted"
+      ]
+    },
+    {
+      "slug": "national-director-ict",
+      "title": "National Director of ICT / New Media",
+      "shortTitle": "Director of ICT / New Media",
+      "scopeLevel": "national",
+      "rank": 21,
+      "mandate": "Technology and digital operations, including this platform, and cybersecurity monitoring.",
+      "duties": [
+        "Manage digital platforms",
+        "Website administration",
+        "Cybersecurity monitoring",
+        "Social media systems"
+      ],
+      "kpis": [
+        "Platform uptime",
+        "Membership database integrity",
+        "Digital engagement growth"
+      ]
+    },
+    {
+      "slug": "national-pwd-leader",
+      "title": "National PWD Leader",
+      "shortTitle": "PWD Leader",
+      "scopeLevel": "national",
+      "rank": 22,
+      "mandate": "Persons With Disabilities engagement and accessibility advocacy.",
+      "duties": [
+        "Coordinate PWD inclusion",
+        "Advocate accessibility"
+      ],
+      "kpis": [
+        "PWD membership growth",
+        "Accessibility initiatives implemented"
+      ]
+    },
+    {
+      "slug": "national-legal-adviser",
+      "title": "National Legal Adviser",
+      "shortTitle": "Legal Adviser",
+      "scopeLevel": "national",
+      "rank": 23,
+      "mandate": "Legal compliance and advisory.",
+      "duties": [
+        "Draft agreements",
+        "Advise on legal matters",
+        "Manage litigation",
+        "Ensure regulatory compliance"
+      ],
+      "kpis": [
+        "Legal compliance rate",
+        "Risk reduction",
+        "Contracts reviewed"
+      ]
+    },
+    {
+      "slug": "national-director-contacts",
+      "title": "National Director of Contacts & Adhoc / PUA",
+      "shortTitle": "Director of Contacts & Adhoc",
+      "scopeLevel": "national",
+      "rank": 24,
+      "mandate": "Network expansion and special assignments.",
+      "duties": [
+        "Maintain stakeholder contacts",
+        "Coordinate adhoc teams",
+        "Manage special projects"
+      ],
+      "kpis": [
+        "Strategic contacts acquired",
+        "Successful adhoc assignments"
+      ]
+    },
+    {
+      "slug": "national-director-religious-affairs",
+      "title": "National Director of Religious Affairs & Institutions",
+      "shortTitle": "Director of Religious Affairs",
+      "scopeLevel": "national",
+      "rank": 25,
+      "mandate": "Engagement with faith-based organisations and interfaith peace-building.",
+      "duties": [
+        "Build relationships with religious institutions",
+        "Coordinate interfaith engagements",
+        "Promote peace and unity"
+      ],
+      "kpis": [
+        "Religious institutions engaged",
+        "Faith-based partnerships established"
+      ]
+    },
+    {
+      "slug": "national-youth-leader",
+      "title": "National Youth Leader",
+      "shortTitle": "Youth Leader",
+      "scopeLevel": "national",
+      "rank": 26,
+      "frameworkAddendum": true,
+      "mandate": "Youth mobilisation nationwide. Present in the official unveiling; recorded here so the roster and the framework agree.",
+      "duties": [
+        "Build youth structures",
+        "Coordinate youth participation",
+        "Organise youth programmes"
+      ],
+      "kpis": [
+        "Youth membership growth",
+        "Youth programmes conducted",
+        "Youth leadership participation"
+      ]
+    },
+    {
+      "slug": "zonal-coordinator",
+      "title": "Zonal Coordinator",
+      "shortTitle": "Zonal Coordinator",
+      "scopeLevel": "zonal",
+      "rank": 30,
+      "mandate": "Lead the movement across a geopolitical zone: map the zone, recruit and screen state leadership, and drive structure completion down to LGA level.",
+      "duties": [
+        "Zonal structure mapping",
+        "State leadership recruitment and recommendation",
+        "Vacancy publication and mobilisation",
+        "Verification and screening process",
+        "Appointment of State Coordinators",
+        "State and LGA structure development",
+        "Oversight, monitoring and reporting",
+        "Documentation and record keeping",
+        "Maintain the aspirants and candidates database",
+        "Stakeholder engagement",
+        "Official communication compliance",
+        "Enforcement of directives",
+        "Reporting protocol",
+        "Daily platform audit",
+        "Security and risk management",
+        "Host regular meetings and engage frequently"
+      ],
+      "kpis": [
+        "States covered in zone",
+        "State Coordinators appointed and vetted",
+        "LGA structures completed",
+        "Reporting compliance",
+        "Membership growth in zone"
+      ]
+    },
+    {
+      "slug": "state-coordinator",
+      "title": "State Coordinator",
+      "shortTitle": "State Coordinator",
+      "scopeLevel": "state",
+      "rank": 40,
+      "mandate": "Lead the movement in a state: build and supervise LGA, ward and polling-unit structures, and drive membership registration statewide.",
+      "duties": [
+        "Build and supervise LGA, ward and polling-unit structures",
+        "Drive membership registration statewide",
+        "Convene state meetings",
+        "Enforce national directives",
+        "Submit weekly reports",
+        "Maintain state records"
+      ],
+      "kpis": [
+        "LGAs with functional structures",
+        "Wards covered",
+        "Polling units covered",
+        "New members registered",
+        "Meeting attendance",
+        "Reporting compliance"
+      ]
+    },
+    {
+      "slug": "state-youth-leader",
+      "title": "State Youth Leader",
+      "shortTitle": "State Youth Leader",
+      "scopeLevel": "state",
+      "rank": 41,
+      "mandate": "Mobilise young people across the state and build youth structures at LGA and ward level.",
+      "duties": [
+        "Build state youth structures",
+        "Coordinate youth participation",
+        "Organise youth programmes in the state"
+      ],
+      "kpis": [
+        "Youth membership growth in state",
+        "Youth programmes conducted",
+        "LGAs with youth structures"
+      ]
+    },
+    {
+      "slug": "lga-coordinator",
+      "title": "LGA Coordinator",
+      "shortTitle": "LGA Coordinator",
+      "scopeLevel": "lga",
+      "rank": 50,
+      "mandate": "Build ward and polling-unit structures across a local government area and drive local registration.",
+      "duties": [
+        "Build ward and polling-unit structures",
+        "Drive local registration",
+        "Convene LGA meetings",
+        "Report weekly to the State Coordinator"
+      ],
+      "kpis": [
+        "Wards covered",
+        "Polling units covered",
+        "New members registered",
+        "Reporting compliance"
+      ]
+    },
+    {
+      "slug": "ward-coordinator",
+      "title": "Ward Coordinator",
+      "shortTitle": "Ward Coordinator",
+      "scopeLevel": "ward",
+      "rank": 60,
+      "mandate": "Appoint and support polling-unit agents, and drive registration and PVC collection in the ward.",
+      "duties": [
+        "Appoint and support polling-unit agents",
+        "Drive ward registration and PVC collection",
+        "Report weekly to the LGA Coordinator"
+      ],
+      "kpis": [
+        "Polling units covered",
+        "Members registered",
+        "PVC completion rate in ward"
+      ]
+    },
+    {
+      "slug": "polling-unit-agent",
+      "title": "Polling Unit Agent",
+      "shortTitle": "PU Agent",
+      "scopeLevel": "unit",
+      "rank": 70,
+      "mandate": "Know every voter in the polling unit, drive PVC collection and turnout, and report unit-level status upward.",
+      "duties": [
+        "Know every voter in the unit",
+        "Drive PVC collection and turnout",
+        "Report unit-level status upward"
+      ],
+      "kpis": [
+        "Members registered in unit",
+        "PVC completion rate",
+        "Turnout on election day"
+      ]
+    }
+  ],
+
+  "appointments": [
+    { "office": "national-coordinator", "scopeType": "national", "scopeCode": "NG", "holderName": "Hon. Agom Augustine", "status": "confirmed" },
+    { "office": "national-secretary", "scopeType": "national", "scopeCode": "NG", "holderName": "Emmanuel Chigoziri Okorie", "status": "confirmed" },
+    { "office": "national-publicity-secretary", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Ihiouma Bright", "status": "confirmed" },
+    { "office": "national-financial-secretary", "scopeType": "national", "scopeCode": "NG", "holderName": "Mr. Emeka Eze", "status": "confirmed" },
+    { "office": "national-treasurer", "scopeType": "national", "scopeCode": "NG", "holderName": "Ms. Clara Atim", "status": "confirmed" },
+    { "office": "national-woman-leader", "scopeType": "national", "scopeCode": "NG", "holderName": "Justina Chinyenye", "status": "confirmed" },
+    { "office": "national-editor-auditor", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Anaba Henshaw Chigozie", "status": "confirmed" },
+    { "office": "national-director-welfare", "scopeType": "national", "scopeCode": "NG", "holderName": "Okagbare Blessing Fregene", "status": "confirmed" },
+    { "office": "national-director-mobilization", "scopeType": "national", "scopeCode": "NG", "holderName": null, "status": "vacant" },
+    { "office": "national-organizing-secretary", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Owolabi Olawale", "status": "confirmed" },
+    { "office": "national-ex-officio", "scopeType": "national", "scopeCode": "NG", "holderName": "Michael Mattias Anzenge", "status": "confirmed" },
+    { "office": "national-director-security-strategy", "scopeType": "national", "scopeCode": "NG", "holderName": "Big-Gen. Martins Waboke", "status": "confirmed" },
+    { "office": "national-director-students", "scopeType": "national", "scopeCode": "NG", "holderName": "Ikejiofor Chiemele Patrick", "status": "confirmed" },
+    { "office": "national-director-strategy-research", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Gideon George", "status": "confirmed" },
+    { "office": "national-director-artisans", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Chibuike Eneugwe Ihezue", "status": "confirmed" },
+    { "office": "national-director-diaspora", "scopeType": "diaspora", "scopeCode": "DIASPORA", "holderName": "Comrd. Muri Isa Murtala", "status": "confirmed" },
+    { "office": "national-chief-whip", "scopeType": "national", "scopeCode": "NG", "holderName": "Ijezei Samuel Friday", "status": "confirmed" },
+    { "office": "national-director-programs-events", "scopeType": "national", "scopeCode": "NG", "holderName": "Eisten Ohaikova", "status": "confirmed" },
+    { "office": "national-director-professionals", "scopeType": "national", "scopeCode": "NG", "holderName": "Hon. Oguche Sani", "status": "confirmed" },
+    { "office": "national-director-non-indigenes", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Shack Wealth Ejeromedoghene", "status": "confirmed" },
+    { "office": "national-director-ict", "scopeType": "national", "scopeCode": "NG", "holderName": "Prince Ezinwanne Aliga", "status": "confirmed" },
+    { "office": "national-pwd-leader", "scopeType": "national", "scopeCode": "NG", "holderName": "Mr. Peter Iriri", "status": "confirmed" },
+    { "office": "national-legal-adviser", "scopeType": "national", "scopeCode": "NG", "holderName": "Amb. Chief Bar. Victor Opurum", "status": "confirmed" },
+    { "office": "national-director-contacts", "scopeType": "national", "scopeCode": "NG", "holderName": "Mr. Erueme Festus Kome", "status": "confirmed" },
+    { "office": "national-director-religious-affairs", "scopeType": "national", "scopeCode": "NG", "holderName": "Comrd. Akpoturu O. Godspower", "status": "confirmed" },
+    { "office": "national-youth-leader", "scopeType": "national", "scopeCode": "NG", "holderName": "Hon. Amb. Aga Thaddeus Aondongu", "status": "confirmed" },
+
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "SE", "holderName": "Mrs. Nkolika Ifioma", "status": "confirmed" },
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "SS", "holderName": "Durueke Cherish Comfort", "status": "confirmed" },
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "SW", "holderName": "Ayomikum Williams", "status": "confirmed" },
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "NC", "holderName": "Dr. John Agmada Bawa", "status": "confirmed" },
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "NW", "holderName": null, "status": "advertised" },
+    { "office": "zonal-coordinator", "scopeType": "zone", "scopeCode": "NE", "holderName": null, "status": "advertised" },
+
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "RI", "holderName": "Hon. Osita Sunday", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "GO", "holderName": "Mr. Yohanna Peter", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "DE", "holderName": "Mr. Jeffrey Ejezie Obiajuru", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "KD", "holderName": "Mr. Peter Dalung", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "AN", "holderName": "Hon. Victor Akachukwu", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "IM", "holderName": "Mr. Chinedu Mbah", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "FC", "holderName": "Bro. Cletus Iorfa Terna Emmanuel", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "ED", "holderName": "Mark Clem Afamikhe", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "NA", "holderName": "Adigizi Daniel", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "EB", "holderName": "Comrd. Kingsley Emmanuel", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "CR", "holderName": "Michael Bebia Mattias", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "JI", "holderName": "Yakubu Manman", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "LA", "holderName": "Samson Okhai Amudah", "status": "confirmed" },
+    { "office": "state-coordinator", "scopeType": "state", "scopeCode": "ON", "holderName": "Janet Olayemi Asekunowo", "status": "confirmed" },
+
+    { "office": "state-youth-leader", "scopeType": "state", "scopeCode": "DE", "holderName": "Prophet Solomon", "status": "confirmed" }
+  ]
+}
