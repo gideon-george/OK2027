@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "title": "NOkM 6-Month Victory Action Plan",
+    "subtitle": "Towards the 2027 general election",
+    "pillars": [
+      "Strategy that wins",
+      "People at the center",
+      "Integrity in action",
+      "Results that matter"
+    ],
+    "verbs": ["Mobilize", "Organize", "Educate", "Deliver Victory"],
+    "closing": "One Movement. One Goal. A New Nigeria. A Better Future.",
+    "dataStatus": "The four phases and their pillars come from the official action-plan circular. Individual week milestones below are the working plan and are NOT yet ratified dates — leadership sets the calendar. Nothing here should be quoted as a fixed deadline.",
+    "todo": "Replace week milestones and due dates with the schedule approved by the National Coordinator."
+  },
+
+  "phases": [
+    {
+      "slug": "foundation",
+      "name": "Foundation and structure",
+      "verb": "Mobilize",
+      "pillar": "Strategy that wins",
+      "weeks": "1–6",
+      "summary": "Activate the national structure, fill every vacant office, and put a working chain of command in place from national down to LGA."
+    },
+    {
+      "slug": "expansion",
+      "name": "Expansion and registration",
+      "verb": "Organize",
+      "pillar": "People at the center",
+      "weeks": "7–13",
+      "summary": "Drive membership registration in every state, complete ward structures, and get the PVC drive moving at scale."
+    },
+    {
+      "slug": "education",
+      "name": "Education and consolidation",
+      "verb": "Educate",
+      "pillar": "Integrity in action",
+      "weeks": "14–19",
+      "summary": "Train agents, run civic education through the structure, and screen and consolidate everything already built."
+    },
+    {
+      "slug": "victory",
+      "name": "Mobilisation to victory",
+      "verb": "Deliver Victory",
+      "pillar": "Results that matter",
+      "weeks": "20–26",
+      "summary": "Convert structure into turnout: polling-unit coverage, agent deployment, and a peaceful, well-observed election day."
+    }
+  ],
+
+  "items": [
+    { "phase": "foundation", "week": 1, "title": "Activate the national executive", "deliverable": "Every national director confirmed, briefed and reporting", "ownerOffice": "national-coordinator" },
+    { "phase": "foundation", "week": 1, "title": "Publish all vacant offices", "deliverable": "Vacancy board live and circulated to every platform", "ownerOffice": "national-organizing-secretary" },
+    { "phase": "foundation", "week": 2, "title": "Fill the two vacant zonal coordinator posts", "deliverable": "North-West and North-East coordinators screened and appointed", "ownerOffice": "national-organizing-secretary" },
+    { "phase": "foundation", "week": 3, "title": "Zonal structure mapping", "deliverable": "Each zone submits a map of its states and current coverage", "ownerOffice": "zonal-coordinator" },
+    { "phase": "foundation", "week": 4, "title": "Recruit remaining state coordinators", "deliverable": "All 37 state coordinator posts filled and vetted", "ownerOffice": "zonal-coordinator" },
+    { "phase": "foundation", "week": 5, "title": "Integrity screening of all appointees", "deliverable": "Vetting completed and recorded for every officer", "ownerOffice": "national-director-security-strategy" },
+    { "phase": "foundation", "week": 6, "title": "Weekly reporting goes live", "deliverable": "Every officer submitting reports through the platform", "ownerOffice": "national-secretary" },
+
+    { "phase": "expansion", "week": 7, "title": "Launch national membership drive", "deliverable": "Registration open in all 36 states and the FCT", "ownerOffice": "national-director-mobilization" },
+    { "phase": "expansion", "week": 8, "title": "Import the INEC register", "deliverable": "All 774 LGAs, wards and polling units loaded into the platform", "ownerOffice": "national-director-ict" },
+    { "phase": "expansion", "week": 9, "title": "Appoint LGA coordinators", "deliverable": "LGA structures established in every covered state", "ownerOffice": "state-coordinator" },
+    { "phase": "expansion", "week": 10, "title": "Women and youth structures", "deliverable": "Women and youth leaders appointed at state level", "ownerOffice": "national-woman-leader" },
+    { "phase": "expansion", "week": 11, "title": "Campus and professional chapters", "deliverable": "Active SUG chapters and professional networks reporting", "ownerOffice": "national-director-students" },
+    { "phase": "expansion", "week": 12, "title": "Diaspora chapters", "deliverable": "Country chapters established and reporting", "ownerOffice": "national-director-diaspora" },
+    { "phase": "expansion", "week": 13, "title": "Ward coverage milestone", "deliverable": "Ward coordinators appointed across all covered LGAs", "ownerOffice": "lga-coordinator" },
+
+    { "phase": "education", "week": 14, "title": "Civic education rollout", "deliverable": "Every member routed through the civic lesson series", "ownerOffice": "national-director-strategy-research" },
+    { "phase": "education", "week": 15, "title": "PVC verification sweep", "deliverable": "PVC status recorded for every registered member", "ownerOffice": "national-director-mobilization" },
+    { "phase": "education", "week": 16, "title": "Polling unit agent training", "deliverable": "Agents trained on process, conduct and de-escalation", "ownerOffice": "national-director-programs-events" },
+    { "phase": "education", "week": 17, "title": "First quarterly performance review", "deliverable": "Scorecards issued for every officer; non-performers addressed", "ownerOffice": "national-editor-auditor" },
+    { "phase": "education", "week": 18, "title": "Security and crisis planning", "deliverable": "Event security and emergency response plans per state", "ownerOffice": "national-director-security-strategy" },
+    { "phase": "education", "week": 19, "title": "Interfaith and community engagement", "deliverable": "Religious institutions and traditional leaders engaged per state", "ownerOffice": "national-director-religious-affairs" },
+
+    { "phase": "victory", "week": 20, "title": "Polling unit coverage audit", "deliverable": "Named agent recorded for every polling unit in covered wards", "ownerOffice": "ward-coordinator" },
+    { "phase": "victory", "week": 21, "title": "Turnout modelling by ward", "deliverable": "Ward-level turnout targets set and communicated", "ownerOffice": "national-director-strategy-research" },
+    { "phase": "victory", "week": 22, "title": "Door-to-door and town halls", "deliverable": "Direct voter contact programme running in every state", "ownerOffice": "national-director-mobilization" },
+    { "phase": "victory", "week": 23, "title": "Final PVC collection push", "deliverable": "Every member with a PVC in hand", "ownerOffice": "state-coordinator" },
+    { "phase": "victory", "week": 24, "title": "Agent deployment plan", "deliverable": "Deployment confirmed, with logistics and communication lines", "ownerOffice": "national-director-programs-events" },
+    { "phase": "victory", "week": 25, "title": "Election-day readiness drill", "deliverable": "Every agent briefed on conduct, safety and reporting", "ownerOffice": "national-director-security-strategy" },
+    { "phase": "victory", "week": 26, "title": "Deliver the vote", "deliverable": "Peaceful, well-observed turnout in every covered polling unit", "ownerOffice": "national-coordinator" }
+  ]
+}
