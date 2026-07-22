@@ -75,7 +75,9 @@ export function OfficerDashboard() {
       const [appointmentRes, periodRes, directiveRes] = await Promise.all([
         supabase
           .from("appointments")
-          .select("id, slug, scope_type, scope_code, holder_name, offices(title, short_title)")
+          .select(
+            "id, slug, scope_type, scope_code, holder_name, offices(title, short_title)"
+          )
           .eq("profile_id", user.id)
           .is("ended_at", null)
           .maybeSingle(),
@@ -339,6 +341,18 @@ export function OfficerDashboard() {
                 <p className="font-display text-brand-blue pt-1 text-4xl font-bold tabular-nums">
                   {snapshot.composite ?? "—"}
                 </p>
+                <p className="text-muted-foreground pt-2 text-sm">
+                  {officeTitle} · {scopeLabel}
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-3"
+                  data-print-hide
+                  onClick={() => window.print()}
+                >
+                  Print this scorecard
+                </Button>
               </div>
               <div className="space-y-3">
                 {generalKpis.map((kpi) => {

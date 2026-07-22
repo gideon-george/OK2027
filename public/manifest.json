@@ -1,12 +1,12 @@
 {
-  "name": "OK2027",
-  "short_name": "OK2027",
-  "description": "A community and civic-participation app for Nigerian supporters ahead of the 2027 elections.",
+  "name": "NOkM — National OK Movement",
+  "short_name": "NOkM",
+  "description": "The National OK Movement — organising Nigerians ward by ward behind Peter Obi and Rabiu Kwankwaso for the 2027 general election.",
   "start_url": "/OK2027/",
   "scope": "/OK2027/",
   "display": "standalone",
-  "theme_color": "#0B7A3B",
-  "background_color": "#FDFCF9",
+  "theme_color": "#1A3A8F",
+  "background_color": "#FFFFFF",
   "icons": [
     {
       "src": "/OK2027/icons/icon-192.png",

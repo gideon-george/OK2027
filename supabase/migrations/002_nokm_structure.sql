@@ -63,7 +63,9 @@ create table appointments (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
   office_id uuid not null references offices (id) on delete restrict,
-  scope_type scope_type not null,
+  -- office_scope_level, not the scope_type enum from migration 001: that one
+  -- has no 'national' member, and national posts have no geographic scope.
+  scope_type office_scope_level not null,
   -- Geographic scope. Null for national posts, which have no sub-scope.
   scope_code text,
   zone_id uuid references zones (id) on delete restrict,
@@ -249,7 +251,7 @@ as $$
   where a.profile_id = auth.uid()
     and a.ended_at is null
     and a.status <> 'vacant'
-    and a.scope_type = 'zone';
+    and a.scope_type = 'zonal';
 $$;
 
 -- ============================================================================

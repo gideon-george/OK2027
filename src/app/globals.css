@@ -138,3 +138,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Quarterly scorecards are printed and tabled at meetings, so a print view is
+   a real deliverable rather than an afterthought. */
+@media print {
+  header,
+  footer,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  a[href]::after {
+    content: "";
+  }
+}

@@ -60,6 +60,13 @@ database or from the roster file. **None are hard-coded.** Before Supabase is
 provisioned these render as honest empty states ("no members registered yet"),
 never as a placeholder figure.
 
+## Configuration that does not follow the base path
+
+`public/manifest.json` is static JSON and cannot read the environment, so its
+`start_url`, `scope` and icon paths hard-code `/OK2027`. Update them by hand
+when moving to a custom domain — everything else follows
+`NEXT_PUBLIC_BASE_PATH`.
+
 ## Known budget exception
 
 `/join` builds to ~193 kB of first-load JS, above the ~150 kB target. The

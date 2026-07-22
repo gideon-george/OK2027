@@ -5,6 +5,15 @@ export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/OK2027";
 export const siteUrl =
   process.env.NEXT_PUBLIC_APP_URL ?? "https://gideon-george.github.io/OK2027";
 
+/**
+ * Origin without the base path.
+ *
+ * `metadataBase` must be the bare origin: Next prepends `basePath` itself when
+ * resolving metadata image URLs, so passing the full site URL produces a
+ * doubled path like /OK2027/OK2027/opengraph-image.png.
+ */
+export const siteOrigin = new URL(siteUrl).origin;
+
 export const site = {
   name: "NOkM",
   fullName: "National OK Movement",

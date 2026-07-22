@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
-import { basePath, site, siteUrl } from "@/lib/site";
+import { basePath, site, siteOrigin, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteOrigin),
   title: {
     default: `${site.name} — ${site.fullName}`,
     template: `%s | ${site.name}`,
@@ -43,6 +43,21 @@ export const viewport: Viewport = {
   themeColor: "#1a3a8f",
 };
 
+// Identifies NOkM as an independent political support movement, so search
+// engines and previews do not present it as the NDC party itself.
+const organisationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.fullName,
+  alternateName: site.name,
+  url: siteUrl,
+  slogan: site.tagline,
+  description: site.description,
+  areaServed: "NG",
+  disambiguatingDescription:
+    "An independent grassroots support movement. Not an organ of the Nigeria Democratic Congress.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,6 +79,12 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organisationJsonLd),
+          }}
+        />
       </body>
     </html>
   );
