@@ -62,7 +62,7 @@ export default function PvcPage() {
     <div className="mx-auto max-w-3xl px-4 py-12">
       <header>
         <IdCard className="text-brand-green size-10" />
-        <h1 className="font-display pt-4 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+        <h1 className="font-display pt-4 text-3xl font-extrabold tracking-tight text-balance sm:text-5xl">
           Get your PVC, secure Nigeria&apos;s future
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">

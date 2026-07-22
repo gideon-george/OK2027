@@ -39,7 +39,8 @@ export default function LeaderboardPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
       <header className="max-w-2xl">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <p className="eyebrow text-brand-red">Who is doing the work</p>
+        <h1 className="font-display pt-2 text-3xl font-extrabold tracking-tight sm:text-5xl">
           Leaderboard
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">

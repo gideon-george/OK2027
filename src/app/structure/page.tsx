@@ -22,7 +22,8 @@ export default function StructurePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
       <header className="max-w-3xl">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <p className="eyebrow text-brand-red">National → Zone → State → LGA → Ward → Unit</p>
+        <h1 className="font-display pt-2 text-3xl font-extrabold tracking-tight sm:text-5xl">
           The structure
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">

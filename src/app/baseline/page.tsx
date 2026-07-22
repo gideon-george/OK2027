@@ -42,7 +42,7 @@ export default function BaselinePage() {
         <Badge variant="outline" className="border-brand-blue/40 text-brand-blue">
           2023 general election
         </Badge>
-        <h1 className="font-display pt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+        <h1 className="font-display pt-3 text-3xl font-extrabold tracking-tight text-balance sm:text-5xl">
           The ground we are organising on
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">
@@ -53,11 +53,12 @@ export default function BaselinePage() {
       </header>
 
       <section className="pt-8">
-        <div className="border-brand-red/30 bg-brand-red/5 rounded-lg border p-5">
-          <p className="font-display text-brand-red text-4xl font-bold tabular-nums">
+        <div className="border-brand-red/30 bg-brand-red/5 relative overflow-hidden rounded-xl border p-6 sm:p-8">
+          <span className="tricolor absolute inset-x-0 top-0 h-1" aria-hidden />
+          <p className="text-gradient-red font-display text-5xl font-extrabold tracking-tight tabular-nums sm:text-6xl">
             {fmt(nationalUntapped)}
           </p>
-          <p className="pt-1 font-semibold">
+          <p className="font-display pt-2 text-lg font-bold">
             registered voters did not vote in 2023
           </p>
           <p className="text-muted-foreground pt-2 text-sm leading-relaxed">

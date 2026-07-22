@@ -43,7 +43,7 @@ export default function MarketPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
       <header className="max-w-2xl">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
           Market &amp; Trade board
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">

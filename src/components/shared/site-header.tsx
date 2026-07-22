@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Wordmark } from "@/components/shared/wordmark";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { navLinks, primaryNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +26,8 @@ export function SiteHeader() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="bg-background/95 sticky top-0 z-50 border-b backdrop-blur">
+    <header className="bg-background/85 sticky top-0 z-50 border-b backdrop-blur-md">
+      <div className="tricolor h-[3px]" aria-hidden />
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <Link href="/" className="shrink-0" aria-label="NOkM home">
           <Wordmark withSubtitle />
@@ -38,9 +40,9 @@ export function SiteHeader() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
                 isActive(link.href)
-                  ? "text-foreground bg-accent"
+                  ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:bg-accent hover:text-foreground"
               )}
             >
@@ -49,8 +51,9 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex">
+        <div className="flex items-center gap-1.5">
+          <ThemeToggle />
+          <Button asChild size="sm" className="hidden shadow-sm sm:inline-flex">
             <Link href="/join">Join the movement</Link>
           </Button>
 

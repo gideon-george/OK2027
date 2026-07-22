@@ -41,7 +41,7 @@ export default function DiasporaPage() {
     <div className="mx-auto max-w-3xl px-4 py-12">
       <header>
         <Globe className="text-brand-blue size-10" />
-        <h1 className="font-display pt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="font-display pt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
           Diaspora chapters
         </h1>
         <p className="text-muted-foreground pt-3 leading-relaxed">

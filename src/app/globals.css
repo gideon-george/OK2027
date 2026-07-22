@@ -73,9 +73,10 @@
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.922 0.004 265);
+  --input: oklch(0.922 0.004 265);
+  /* Brand-blue focus ring: focus states should look owned, not default. */
+  --ring: var(--brand-blue);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -97,11 +98,13 @@
   --brand-red: #ff8f92;
   --brand-green: #63c98c;
 
-  --background: oklch(0.145 0 0);
+  /* A whisper of blue in the dark surfaces so the theme reads as NOkM's
+     night mode rather than a generic grey. */
+  --background: oklch(0.15 0.015 265);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.205 0.018 265);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.205 0.018 265);
   --popover-foreground: oklch(0.985 0 0);
   --primary: var(--brand-blue);
   --primary-foreground: oklch(0.205 0 0);
@@ -112,9 +115,9 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: var(--brand-blue);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -136,6 +139,179 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--brand-blue) 22%, transparent);
+  }
+  .font-display {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   NOkM visual signature
+   ------------------------------------------------------------------------ */
+
+/* The tricolor: red for the movement's urgency, blue for the party, green for
+   Nigeria. Appears as a thin stripe on the chrome and as section dividers. */
+.tricolor {
+  background: linear-gradient(
+    90deg,
+    var(--brand-red) 0%,
+    var(--brand-red) 33.3%,
+    var(--brand-blue) 33.3%,
+    var(--brand-blue) 66.6%,
+    var(--brand-green) 66.6%,
+    var(--brand-green) 100%
+  );
+}
+
+/* Soft brand glow behind hero sections. Uses the theme-aware brand vars, so
+   in dark mode it becomes a subtle luminous haze instead of a pastel wash. */
+.hero-surface {
+  background:
+    radial-gradient(
+      55rem 28rem at 12% -12%,
+      color-mix(in oklab, var(--brand-blue) 9%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      45rem 24rem at 88% -8%,
+      color-mix(in oklab, var(--brand-red) 7%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      40rem 22rem at 50% 115%,
+      color-mix(in oklab, var(--brand-green) 6%, transparent),
+      transparent 60%
+    );
+}
+
+/* Faint organising grid, fading out from the top — the visual metaphor is the
+   ward map. Pointer-events none; sit it behind hero content. */
+.hero-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 2.75rem 2.75rem;
+  mask-image: radial-gradient(
+    ellipse 90% 70% at 50% 0%,
+    black 25%,
+    transparent 78%
+  );
+}
+
+/* The deep-blue statement band. Fixed colours on purpose: it must look
+   identical in light and dark themes, like ink on a poster. */
+.band-blue {
+  background:
+    radial-gradient(
+      42rem 22rem at 88% -25%,
+      rgba(255, 255, 255, 0.13),
+      transparent 60%
+    ),
+    radial-gradient(
+      34rem 20rem at 8% 125%,
+      rgba(209, 35, 42, 0.4),
+      transparent 62%
+    ),
+    linear-gradient(135deg, #16307b 0%, #1a3a8f 55%, #0f2560 100%);
+}
+
+/* Gradient display numbers. */
+.text-gradient-blue {
+  background: linear-gradient(
+    135deg,
+    var(--brand-blue),
+    color-mix(in oklab, var(--brand-blue) 55%, var(--brand-green))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-red {
+  background: linear-gradient(
+    135deg,
+    var(--brand-red),
+    color-mix(in oklab, var(--brand-red) 55%, var(--brand-blue))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-light {
+  background: linear-gradient(180deg, #ffffff 30%, #c3d2fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Eyebrow label above section headings. */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Interactive card lift. Kept subtle: 2px and a brand-tinted shadow. */
+.card-lift {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -18px color-mix(in oklab, var(--brand-blue) 35%, transparent);
+}
+
+/* Entrance animation for hero content. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animation-delay-1 {
+  animation-delay: 0.08s;
+}
+.animation-delay-2 {
+  animation-delay: 0.16s;
+}
+.animation-delay-3 {
+  animation-delay: 0.24s;
+}
+.animation-delay-4 {
+  animation-delay: 0.32s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+  .card-lift,
+  .card-lift:hover {
+    transform: none;
+    transition: none;
   }
 }
 

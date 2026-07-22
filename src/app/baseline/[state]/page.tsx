@@ -80,17 +80,18 @@ export default async function StateBaselinePage({
           <Badge variant="secondary">{zone?.name ?? state.zone}</Badge>
           <Badge variant="outline">2023 baseline</Badge>
         </div>
-        <h1 className="font-display pt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 className="font-display pt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">
           {state.name}
         </h1>
       </header>
 
       <section className="pt-8">
-        <div className="border-brand-red/30 bg-brand-red/5 rounded-lg border p-5">
-          <p className="font-display text-brand-red text-3xl font-bold tabular-nums">
+        <div className="border-brand-red/30 bg-brand-red/5 relative overflow-hidden rounded-xl border p-6">
+          <span className="tricolor absolute inset-x-0 top-0 h-1" aria-hidden />
+          <p className="text-gradient-red font-display text-4xl font-extrabold tracking-tight tabular-nums sm:text-5xl">
             {fmt(gap)}
           </p>
-          <p className="pt-1 font-semibold">
+          <p className="font-display pt-2 font-bold">
             registered voters in {state.name} did not vote in 2023
           </p>
           <p className="text-muted-foreground pt-2 text-sm leading-relaxed">

@@ -74,7 +74,7 @@ const principles = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+      <h1 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
         About the movement
       </h1>
 
