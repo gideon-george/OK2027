@@ -82,6 +82,36 @@ export const contactOfficeSchema = z.object({
 
 export type ContactOfficeInput = z.infer<typeof contactOfficeSchema>;
 
+/**
+ * An offer of in-kind support.
+ *
+ * Note what is absent and must stay absent: no amount, no bank details, no card
+ * fields. This form records what someone can lend, build or drive — never a
+ * payment instrument.
+ */
+export const pledgeSchema = z.object({
+  category: z.string().min(1, "Choose what kind of support you can offer"),
+  description: z
+    .string()
+    .trim()
+    .min(10, "Tell us a little more about what you can offer")
+    .max(1000, "Keep it under 1000 characters"),
+  quantity: z.string().trim().max(120).optional(),
+  stateCode: z.string().min(1, "Tell us which state you are in"),
+  lgaCode: z.string().optional(),
+  availableNote: z.string().trim().max(120).optional(),
+  contactName: fullNameSchema,
+  contactPhone: phoneSchema,
+  contactEmail: z
+    .union([z.literal(""), z.string().trim().email("Enter a valid email address")])
+    .optional(),
+  consent: z.literal(true, {
+    message: "You must agree before we can record your offer",
+  }),
+});
+
+export type PledgeInput = z.infer<typeof pledgeSchema>;
+
 export const applicationSchema = z.object({
   fullName: fullNameSchema,
   phone: phoneSchema,
