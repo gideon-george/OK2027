@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
 import { ContactFab } from "@/components/shared/contact-fab";
 import { DataLightProvider } from "@/components/shared/data-light";
+import { ServiceWorker } from "@/components/shared/service-worker";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import {
   basePath,
@@ -34,7 +35,9 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.fullName,
-  manifest: `${basePath}/manifest.json`,
+  // The manifest comes from src/app/manifest.ts, which Next links itself and
+  // resolves against basePath — no hard-coded path to update on a domain move.
+  appleWebApp: { capable: true, title: site.name, statusBarStyle: "default" },
   // Distribution happens by WhatsApp forward, so link previews are a feature.
   openGraph: {
     type: "website",
@@ -102,6 +105,7 @@ export default function RootLayout({
             </main>
             <SiteFooter />
             <ContactFab />
+            <ServiceWorker />
           </DataLightProvider>
         </ThemeProvider>
         <script

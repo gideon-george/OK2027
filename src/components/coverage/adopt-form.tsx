@@ -112,6 +112,12 @@ export function AdoptForm() {
       }
 
       window.localStorage.removeItem(DRAFT_KEY);
+      // Lets the home page offer the next step rather than this one again.
+      try {
+        window.localStorage.setItem("nokm.adopted", "1");
+      } catch {
+        /* private browsing */
+      }
       setSubmitted(values);
     } catch (e) {
       setError(

@@ -71,6 +71,13 @@ export function OfficerDashboard() {
         return;
       }
       setSignedIn(true);
+      // Marker only — no identity, no token. Lets the home page send an
+      // officer to their dashboard instead of asking them to register again.
+      try {
+        window.localStorage.setItem("nokm.officer", "1");
+      } catch {
+        /* private browsing */
+      }
 
       const today = new Date().toISOString().slice(0, 10);
 

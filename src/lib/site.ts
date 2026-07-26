@@ -46,6 +46,24 @@ export const nationalCoordinator = {
   statement: null as string | null,
 } as const;
 
+/**
+ * The 2027 general election.
+ *
+ * INEC has not published the official 2027 timetable — it is normally released
+ * around a year out. The date below follows INEC's settled convention of
+ * holding the presidential and National Assembly elections on the third
+ * Saturday in February, and it is labelled EXPECTED everywhere it appears.
+ *
+ * When INEC publishes the real date, set `confirmed: true` and correct the
+ * date. Never present this as official while `confirmed` is false.
+ */
+export const generalElection = {
+  /** Expected presidential and National Assembly polling day. */
+  expectedDate: "2027-02-20",
+  confirmed: false,
+  note: "INEC has not yet published the official 2027 timetable. This follows INEC's usual third-Saturday-in-February convention and will be corrected when the Commission announces.",
+} as const;
+
 /** Credit for the people who built the platform. Shown in the site footer. */
 export const builtBy = {
   name: "Comrd. Gideon George",

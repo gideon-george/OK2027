@@ -2,16 +2,24 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
+  HandHeart,
   IdCard,
-  Megaphone,
+  MapPin,
   Network,
   Trophy,
   UserPlus,
+  Users,
+  Vote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { OfficerPortrait } from "@/components/shared/officer-portrait";
 import { CountUp } from "@/components/shared/count-up";
+import { ShareBar } from "@/components/shared/share-bar";
+import { NextStepCta } from "@/components/home/next-step-cta";
+import { ElectionCountdown } from "@/components/home/election-countdown";
+import { ActivityTicker } from "@/components/home/activity-ticker";
+import { OfficerMosaic } from "@/components/home/officer-mosaic";
 import {
   CoverageTile,
   formatAsOf,
@@ -61,11 +69,35 @@ const pillars = [
 
 const routes = [
   {
-    icon: Network,
-    title: "The structure",
-    href: "/structure",
+    icon: MapPin,
+    title: "Adopt a polling unit",
+    href: "/coverage/adopt",
     description:
-      "Every national, zonal and state office — who holds it, and which are open.",
+      "Claim the unit where you vote. One person, one unit — and your name against the place.",
+    chip: "text-brand-red bg-brand-red/10",
+  },
+  {
+    icon: Vote,
+    title: "Your ballot 2027",
+    href: "/aspirants/ballot",
+    description:
+      "The five races that decide who represents you. Most people cannot name all five.",
+    chip: "text-brand-blue bg-brand-blue/10",
+  },
+  {
+    icon: HandHeart,
+    title: "Support the movement",
+    href: "/support",
+    description:
+      "A hall, a bus, printing, airtime, or your own hours. Membership stays free.",
+    chip: "text-brand-green bg-brand-green/10",
+  },
+  {
+    icon: Users,
+    title: "Each one bring ten",
+    href: "/bring-ten",
+    description:
+      "Your referral code, your count, and where you rank in your own ward.",
     chip: "text-brand-blue bg-brand-blue/10",
   },
   {
@@ -85,20 +117,12 @@ const routes = [
     chip: "text-brand-red bg-brand-red/10",
   },
   {
-    icon: Megaphone,
-    title: "6-month action plan",
-    href: "/action-plan",
+    icon: Network,
+    title: "The structure",
+    href: "/structure",
     description:
-      "What the movement is doing between now and the general election.",
+      "Every national, zonal and state office — who holds it, and which are open.",
     chip: "text-brand-blue bg-brand-blue/10",
-  },
-  {
-    icon: Trophy,
-    title: "Leaderboard",
-    href: "/leaderboard",
-    description:
-      "How each state and LGA is performing on members, structures and reports.",
-    chip: "text-brand-green bg-brand-green/10",
   },
   {
     icon: UserPlus,
@@ -107,6 +131,14 @@ const routes = [
     description:
       "Open coordinator posts across the federation. Step forward and serve.",
     chip: "text-brand-red bg-brand-red/10",
+  },
+  {
+    icon: Trophy,
+    title: "Leaderboard",
+    href: "/leaderboard",
+    description:
+      "How each state and LGA is performing on members, structures and reports.",
+    chip: "text-brand-green bg-brand-green/10",
   },
 ];
 
@@ -144,21 +176,9 @@ export default function Home() {
             . The &ldquo;O&rdquo; and the &ldquo;K&rdquo;.
           </p>
 
-          <div className="animate-fade-up animation-delay-3 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="h-12 px-7 text-base shadow-lg shadow-primary/25">
-              <Link href="/join">
-                Join the movement <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="bg-background/60 h-12 px-7 text-base backdrop-blur"
-            >
-              <Link href="/structure">See the structure</Link>
-            </Button>
-          </div>
+          <NextStepCta />
+
+          <ElectionCountdown className="animate-fade-up animation-delay-3" />
 
           <div className="animate-fade-up animation-delay-4 flex flex-wrap items-center justify-center gap-3 pt-4">
             {principals.map((p) => (
@@ -188,6 +208,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ActivityTicker />
+      <OfficerMosaic />
 
       {/* --------------------------------------------------------- coverage */}
       <section className="mx-auto max-w-6xl px-4 py-14">
@@ -422,6 +445,13 @@ export default function Home() {
             <Link href="/about">Read how we operate</Link>
           </Button>
         </div>
+
+        <ShareBar
+          className="mt-12"
+          title="Forward it to one group"
+          message={`${fmt(darkUnits)} polling units in Nigeria have nobody from this movement standing in them. Find yours:`}
+          path="/"
+        />
       </section>
     </div>
   );
