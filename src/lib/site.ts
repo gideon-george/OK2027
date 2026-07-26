@@ -160,4 +160,9 @@ export const conductDisclaimer =
 export const inecDisclaimer =
   "NOkM is not affiliated with INEC. Always confirm registration and election details on official INEC channels.";
 
-export const currentPolicyVersion = "2026-07-22";
+/**
+ * Bumped for Wave 4: the platform now also collects polling-unit adoptions,
+ * officer photographs, in-kind support offers and aspirant listings. That is a
+ * material change to what is held, so members are re-prompted for consent.
+ */
+export const currentPolicyVersion = "2026-07-26";

@@ -7,7 +7,6 @@ import { DataLightProvider } from "@/components/shared/data-light";
 import { ServiceWorker } from "@/components/shared/service-worker";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import {
-  basePath,
   nationalCoordinator,
   officialContact,
   site,

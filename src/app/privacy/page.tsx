@@ -63,6 +63,56 @@ export default function PrivacyPage() {
               you agreed to and the time you agreed.
             </li>
           </ul>
+
+          <h3 className="font-display pt-5 text-base font-semibold">
+            If you adopt a polling unit
+          </h3>
+          <ul className="list-disc space-y-2 pt-2 pl-5">
+            <li>
+              <strong>Your name, phone number, ward and the unit label you
+              type</strong> — so your LGA Coordinator can confirm the claim and
+              work with you. Your name and number are never published; the
+              public wall of champions shows a first name and an LGA only.
+            </li>
+          </ul>
+
+          <h3 className="font-display pt-5 text-base font-semibold">
+            If you are an officer who uploads a portrait
+          </h3>
+          <ul className="list-disc space-y-2 pt-2 pl-5">
+            <li>
+              <strong>Your photograph and a separate consent record for it</strong>{" "}
+              — a photograph of a political officeholder ties a face to a
+              political opinion, so it is treated as sensitive. It is never
+              published without your explicit consent, and the database refuses
+              to approve a photo that has no consent recorded. You can withdraw
+              it at any moment and it comes down immediately, with no review.
+            </li>
+          </ul>
+
+          <h3 className="font-display pt-5 text-base font-semibold">
+            If you offer support in kind
+          </h3>
+          <ul className="list-disc space-y-2 pt-2 pl-5">
+            <li>
+              <strong>What you are offering and how to reach you</strong> — read
+              only by the National Director of Welfare and the National
+              Treasurer, not by officers generally. Offers are never published.
+            </li>
+          </ul>
+
+          <h3 className="font-display pt-5 text-base font-semibold">
+            If you ask to be listed as an aspirant
+          </h3>
+          <ul className="list-disc space-y-2 pt-2 pl-5">
+            <li>
+              <strong>Your name, the seat you are contesting, your declared
+              commitments and a verification contact</strong>. The name, seat and
+              commitments are published if a national officer approves the
+              listing. The verification contact never is. Being listed is not an
+              endorsement by the movement.
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -76,6 +126,13 @@ export default function PrivacyPage() {
             National Identification Number. No officer of the movement is
             authorised to request any of these on our behalf — if someone does,
             it is not us.
+          </p>
+          <p className="pt-2">
+            We also never collect <strong>payment details of any kind</strong> —
+            no card number, no account number, no BVN. This platform has nowhere
+            to store one. If the movement takes financial contributions in
+            future, it will be through a payment provider&apos;s own secure page
+            on their own website, and this site will never see the instrument.
           </p>
         </section>
 
@@ -154,8 +211,15 @@ export default function PrivacyPage() {
             <li>Sign-in is by one-time code to your phone. There is no password to leak.</li>
             <li>
               No member data is stored in the movement&apos;s public code
-              repository, and officer phone numbers are never published on this
-              site.
+              repository. No officer&apos;s personal phone number is published
+              on this site — the only number that ever appears is the
+              movement&apos;s own official contact line, published deliberately
+              and with the consent of the officeholder who answers it.
+            </li>
+            <li>
+              This site loads no advertising trackers, no Meta pixel and no
+              analytics. A political membership platform must not leak its
+              members to ad networks.
             </li>
           </ul>
         </section>

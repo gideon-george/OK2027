@@ -47,6 +47,99 @@ rule that facts are marked verified or unverified and never confused.
 
 For official results, INEC is the source.
 
+## Declared coverage vs the named roster — Wave 4
+
+National Coordination declared the movement's national footprint on
+**26 July 2026**. Those figures live in `data/nokm-coverage-declared.json` and
+are rendered through `DeclaredFigure`, which always prints the source, the date
+and — where they differ — the count actually named on the public roster.
+
+| Level | Declared | Named on the roster | Unnamed |
+|---|---:|---:|---:|
+| National executives | 28 | 24 | **4** |
+| Diaspora coordinators | 3 | 1 | **2** |
+| Zonal coordinators | 6 | 4 | **2** |
+| State coordinators | 26 | 14 | **12** |
+| LGA coordinators | 544 | 0 | **544** |
+| Ward executives | 6,191 | 0 | **6,191** |
+| Polling unit canvassers | 124,258 | 0 | **124,258** |
+
+Both columns are true statements about different things. The declared figure is
+the movement's own operational count; the roster figure is how many people are
+named in `data/nokm-structure.json`. **Neither is ever averaged into the other,
+and the flattering one is never shown alone.**
+
+**Action for leadership:** supply names for the 4 unnamed national executives,
+the 2 diaspora coordinators and the 12 state coordinators so the roster can be
+reconciled. LGA, ward and unit officers are appointed locally and will arrive
+through the database rather than the seed file.
+
+**Build-time guard.** `src/lib/coverage.ts` throws if a declared figure exceeds
+its universe, or if a universe in the JSON disagrees with the loaded INEC
+register. A count larger than the number of polling units in Nigeria is a
+data-entry error, not a fact.
+
+**The `asOf` date** is when the figures were *received*, not a confirmed census
+date. Leadership to confirm when each count was actually taken.
+
+**Ward universe.** The declared file uses INEC's official **8,809** wards rather
+than the 8,874 ward names in the loaded register, so the gap is not understated
+by ~65 suspected spelling variants. That level is exempted from the universe
+cross-check, with a comment saying why.
+
+## Polling unit identities — a real gap
+
+**The register in this repository carries polling-unit *counts*, not polling-unit
+*identities*.**
+
+- `data/baseline-lga/*.json` → `pollingUnits: 485` for Bwari.
+- `public/geo/*.json` → state → LGA → ward, and stops.
+- INEC's unit-by-unit list, with codes and names, **is not here.**
+
+Consequences, all handled rather than papered over:
+
+| Feature | How it copes |
+|---|---|
+| Adopt a polling unit | Anchored to a **ward** from the register, plus a unit label the member types as it is written at their own unit. Stored unverified until an LGA Coordinator confirms it. |
+| Gaps near me | Shows real LGA figures and the LGA's **average** units per ward, explicitly labelled as an average, never as a count for the selected ward. |
+| Coverage map | Colours by things that ARE known. Below state level it renders "not yet reported" rather than an assumed absence. |
+
+**Action:** obtain INEC's polling-unit register with codes. Then unit adoption
+can validate against it and `pu_label` becomes a foreign key.
+
+## Constituency delimitation — the aspirants blocker
+
+`data/constituencies.json` separates two kinds of fact:
+
+| Known and reliable | Not loaded |
+|---|---|
+| 1 President, 36 Governors (the FCT has a Minister, not a Governor) | Names of the 109 senatorial districts |
+| 3 senators per state + 1 for the FCT = 109 (Constitution s.48) | Names of the 360 federal constituencies |
+| 360 Reps (s.49), 993 Assembly seats (s.91) | Names of the 993 state constituencies |
+| | The LGA grouping under every one of them |
+
+Each race carries a `confidence` field and the UI reads it. "Your Ballot 2027"
+names the President and Governor races, tells a Kano voter they are in one of
+Kano's three senatorial districts, and for Reps and Assembly says the
+delimitation is not loaded rather than guessing. **A wrong federal constituency
+on a political website is worse than an absent one.**
+
+**Action:** obtain INEC's delimitation publications. Until then
+`aspirants.constituency_ref` is free text supplied by the aspirant and flagged
+unverified.
+
+## Waiting on leadership — Wave 4 inputs
+
+| Input | Blocks | Current state |
+|---|---|---|
+| Official social handles (exact URLs) | Footer, `/about`, `sameAs` structured data | `socials` ships **empty**. A handle guessed from the movement's name can point at an impersonator. |
+| National Coordinator's WhatsApp number **with consent to publish** | `officialContact.whatsapp`, the floating contact button | `null`. Every call site falls back to the official email. |
+| A signed statement from the Coordinator | The home page and `/leadership` quote block | Falls back to the movement's rallying cry, attributed to the office, not to a person. |
+| Officer photographs + consent | `/structure` gallery, `/leadership`, the home mosaic | Initials avatars. The mosaic renders nothing below 12 approved portraits. |
+| Payment account in the movement's registered name | The cash path on `/support` | `cashSupport.enabled = false`. In-kind is live. |
+| Nigerian election lawyer's review of the donation copy | The cash path on `/support` | Same. |
+| INEC's official 2027 timetable | The home page countdown | `generalElection.confirmed = false`; the date shows as **(expected)**. |
+
 ## Roster
 
 | Item | Status | Notes |
@@ -88,9 +181,11 @@ figure. 2023 baseline figures are computed at build time from the dataset.
 
 ## Configuration that does not follow the base path
 
-`public/manifest.json` is static JSON and cannot read the environment, so its
-`start_url`, `scope` and icon paths hard-code `/OK2027`. Update by hand for a
-custom domain. Everything else follows `NEXT_PUBLIC_BASE_PATH`.
+**Resolved in Wave 4.** `public/manifest.json` used to hard-code `/OK2027` in
+`start_url`, `scope` and every icon path. It is now generated by
+`src/app/manifest.ts`, which reads `basePath` like everything else, so moving to
+a custom domain is a one-line environment change with nothing left to edit by
+hand.
 
 ## Known budget exception
 

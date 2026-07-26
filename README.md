@@ -7,6 +7,10 @@ the "K" — for Nigeria's 2027 general election.
 
 **Live site:** https://gideon-george.github.io/OK2027/
 
+**National Coordinator, Convener & Mobilizer:** Hon. Agom Augustine
+**Official contact:** nokm2026@gmail.com
+**Platform developer:** Comrd. Gideon George
+
 > **NOkM is an independent support group.** It is not an organ of the Nigeria
 > Democratic Congress, is not funded by the party, and does not issue party
 > directives. It complements official party structures and never replaces them.
@@ -21,6 +25,13 @@ record that persists.
 
 | | |
 |---|---|
+| `/coverage` | The penetration map: declared coverage against the whole INEC register, drillable to LGA, and the 52,121 polling units still dark. |
+| `/coverage/adopt` | Claim the polling unit where you vote. One person, one unit. |
+| `/coverage/champions` | Everyone who has claimed a unit — first names and places only. |
+| `/leadership` | The National Coordinator, the National Working Committee and the zonal coordinators. |
+| `/aspirants` | Who is contesting, across all five 2027 races, plus "Your Ballot 2027". |
+| `/support` | Give in kind (open) or in cash (gated), with a public ledger. |
+| `/bring-ten` | Your referral code, your count, your ward ranking. |
 | `/baseline` | Every polling unit in Nigeria, the 2023 register and turnout, and the 63.2M registered voters who did not vote. |
 | `/structure` | Every national, zonal and state office. 70 posts, filled and vacant. |
 | `/vacancies` | Open posts with an application and vetting flow. |
@@ -96,14 +107,27 @@ record.
 - **PVC numbers and VINs.** Only a `yes` / `no` / `in_progress` status. This
   gives every mobilisation metric the movement needs with none of the liability.
 - Bank details, BVN, or NIN. No officer is authorised to ask for these.
+- **Payment instruments of any kind.** There is nowhere in the schema to put a
+  card or account number. If cash support opens it runs on a processor's own
+  hosted checkout, on their domain; this application records intent, never
+  credentials.
 
 **What is never committed to this repository:**
 
-- **Officer phone numbers.** The repo is public; a committed roster stays in git
-  history forever. Names and roles are seeded from
-  `data/nokm-structure.json`; numbers belong in the `officer_contacts` table
-  behind row-level security, loaded from a local uncommitted file.
+- **Officer phone numbers**, with exactly one recorded exception. The repo is
+  public; a committed roster stays in git history forever. Names and roles are
+  seeded from `data/nokm-structure.json`; numbers belong in the
+  `officer_contacts` table behind row-level security, loaded from a local
+  uncommitted file.
+
+  **The exception** is the movement's single *published* contact line, held in
+  `officialContact` in `src/lib/site.ts`. That is an organisational channel, not
+  a directory entry, and it is populated only with the consent of the
+  officeholder who answers it. Never add a second number to that file.
 - Any member data.
+- **Social media handles that have not been supplied by leadership.** `socials`
+  ships empty on purpose: a handle guessed from the movement's name can point at
+  an impersonator, and the movement would be sending its own members there.
 
 **Where consent is recorded:** `members.consent_version` and
 `members.consent_at`, captured from an explicit, never pre-ticked checkbox on
@@ -116,6 +140,16 @@ own scope — a state officer sees their state, a zonal officer their zone.
 Aggregate counts are public; individual records never are. Public contact with
 an office goes through a form, so no officer's number is exposed to
 impersonation or fraud.
+
+**Photographs:** an officer portrait requires that officer's consent, and the
+rule is a database constraint rather than a form validation —
+`approved_requires_consent` makes a photo with no consent record unpublishable
+whatever the UI believes. Withdrawal is immediate and needs no review. Members
+are never photographed; only officers and consenting aspirants appear.
+
+**Declared vs verified:** figures leadership reports but the roster cannot yet
+prove are a separate, labelled category, never merged into a verified count.
+See `docs/TODO-real-data.md`.
 
 **Analytics:** none. No Meta pixel, no Google Analytics. A political membership
 platform must not leak its members to ad networks.
@@ -163,6 +197,10 @@ and fill it in. Without them the site runs fine in a read-only mode.
    - `002_nokm_structure.sql` — offices, appointments, members, applications
    - `003_nokm_reporting.sql` — reporting periods, reports, KPIs, directives
    - `004_nokm_community.sql` — market listings, diaspora chapters
+   - `005_nokm_photos.sql` — officer photographs, consent enforced by constraint
+   - `006_nokm_adoptions.sql` — polling-unit adoptions, referral scoreboard
+   - `007_nokm_support.sql` — in-kind pledges and the public ledger
+   - `008_nokm_aspirants.sql` — aspirants and (separately) endorsements
 
 4. Seed:
 
@@ -185,13 +223,14 @@ previews resolve correctly, then redeploy.
 ### Moving to a custom domain
 
 Set `NEXT_PUBLIC_BASE_PATH=""` and `NEXT_PUBLIC_APP_URL=https://your-domain`.
-Also update `start_url`, `scope` and the icon paths in `public/manifest.json`,
-which are static JSON and cannot read the environment.
+That is the whole change — the web app manifest is generated by
+`src/app/manifest.ts` and follows `basePath` like everything else.
 
 ### Scripts
 
 ```bash
-npm run build              # static export to out/
+npm run build              # static export to out/ (runs sync:public first)
+npm run sync:public        # mirror data/baseline-lga into public/ for client fetch
 npm run lint               # eslint
 npm run db:migrate         # apply migrations
 npm run db:seed            # geography, lessons, badges (dry-runs without credentials)
