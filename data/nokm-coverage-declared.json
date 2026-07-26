@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "source": "National Coordination — National OK Movement",
+    "declaredBy": "Hon. Agom Augustine, National Coordinator",
+    "asOf": "2026-07-26",
+    "asOfIsReceiptDate": true,
+    "note": "Declared coverage as reported by National Coordination. These are the movement's own operational figures, not counts of named records held in this platform. Where the roster names fewer people than are declared, both numbers are shown. See docs/TODO-real-data.md for every outstanding delta.",
+    "asOfNote": "asOf is the date these figures were received from National Coordination, not a confirmed census date. Leadership to confirm the date each count was taken."
+  },
+  "levels": [
+    {
+      "key": "national",
+      "label": "National executives",
+      "shortLabel": "National",
+      "declared": 28,
+      "universe": 32,
+      "universeLabel": "offices established",
+      "universeSource": "docs/nokm-framework.md",
+      "rosterKey": "national",
+      "note": "The framework establishes 32 national offices. 28 are declared filled."
+    },
+    {
+      "key": "diaspora",
+      "label": "Diaspora coordinators",
+      "shortLabel": "Diaspora",
+      "declared": 3,
+      "universe": null,
+      "universeLabel": "no fixed establishment",
+      "universeSource": null,
+      "rosterKey": "diaspora",
+      "note": "The diaspora directorate has no fixed number of posts — chapters are created where Nigerians abroad organise them."
+    },
+    {
+      "key": "zone",
+      "label": "Zonal coordinators",
+      "shortLabel": "Zones",
+      "declared": 6,
+      "universe": 6,
+      "universeLabel": "geopolitical zones",
+      "universeSource": "geo.ts",
+      "rosterKey": "zone"
+    },
+    {
+      "key": "state",
+      "label": "State coordinators",
+      "shortLabel": "States",
+      "declared": 26,
+      "universe": 37,
+      "universeLabel": "states and the FCT",
+      "universeSource": "geo.ts",
+      "rosterKey": "state"
+    },
+    {
+      "key": "lga",
+      "label": "LGA coordinators",
+      "shortLabel": "LGAs",
+      "declared": 544,
+      "universe": 774,
+      "universeLabel": "local government areas",
+      "universeSource": "geo.ts",
+      "rosterKey": null
+    },
+    {
+      "key": "ward",
+      "label": "Ward executives",
+      "shortLabel": "Wards",
+      "declared": 6191,
+      "universe": 8809,
+      "universeLabel": "wards",
+      "universeSource": "INEC official ward count",
+      "rosterKey": null,
+      "note": "INEC's official count is 8,809. The polling-unit register loaded into this platform lists 8,874 ward names; the ~65 extra are almost certainly spelling variants of the same ward. The official figure is used here so the gap is not understated."
+    },
+    {
+      "key": "unit",
+      "label": "Polling unit canvassers",
+      "shortLabel": "Polling units",
+      "declared": 124258,
+      "universe": 176379,
+      "universeLabel": "polling units",
+      "universeSource": "geo.ts",
+      "rosterKey": null
+    }
+  ]
+}

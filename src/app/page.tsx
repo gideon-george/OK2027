@@ -10,9 +10,19 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { StatTile } from "@/components/shared/stat-tile";
 import { OfficerPortrait } from "@/components/shared/officer-portrait";
-import { coverage } from "@/lib/structure";
+import { CountUp } from "@/components/shared/count-up";
+import {
+  CoverageTile,
+  formatAsOf,
+} from "@/components/coverage/declared-figure";
+import {
+  coverageLevel,
+  coverageLevels,
+  coverageMeta,
+  darkUnits,
+} from "@/lib/coverage";
+import { nationalGeo } from "@/lib/geo";
 import { nationalBaseline, nationalUntapped } from "@/lib/baseline";
 import {
   independenceDisclaimer,
@@ -183,48 +193,75 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 py-14">
         <div className="flex flex-wrap items-end justify-between gap-2 pb-5">
           <div>
-            <p className="eyebrow text-brand-red">Live coverage</p>
+            <p className="eyebrow text-brand-red">National coverage</p>
             <h2 className="font-display pt-1 text-3xl font-bold tracking-tight">
               Where we stand
             </h2>
           </div>
           <Link
-            href="/structure"
+            href="/coverage"
             className="text-primary text-sm font-medium hover:underline"
           >
-            Full structure →
+            The coverage map →
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <StatTile
-            tone="blue"
-            value={`${coverage.nationalFilled}/${coverage.nationalTotal}`}
-            label="National offices"
-            hint="Filled of established"
-          />
-          <StatTile
-            tone="blue"
-            value={`${coverage.zonesFilled}/${coverage.zonesTotal}`}
-            label="Zones covered"
-            hint="Zonal coordinators in post"
-          />
-          <StatTile
-            tone="blue"
-            value={`${coverage.statesFilled}/${coverage.statesTotal}`}
-            label="States covered"
-            hint="36 states and the FCT"
-          />
-          <StatTile
-            tone="red"
-            value={coverage.vacanciesTotal}
-            label="Posts open"
-            hint="Apply and serve"
-          />
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {coverageLevels.map((level) => (
+            <CoverageTile key={level.key} level={level} />
+          ))}
         </div>
-        <p className="text-muted-foreground pt-3 text-xs">
-          Structure figures come from the official roster. Membership figures
-          appear here once member registration goes live.
+
+        <p className="text-muted-foreground pt-4 text-xs leading-relaxed">
+          Coverage figures are declared by National Coordination as of{" "}
+          {formatAsOf(coverageMeta.asOf)}. They are the movement&apos;s own
+          operational counts, not counts of named records on this site — where
+          the two differ, both are shown. National totals come from the INEC
+          polling-unit register. See{" "}
+          <Link href="/coverage" className="underline">
+            the coverage map
+          </Link>{" "}
+          for the gap, level by level.
         </p>
+      </section>
+
+      {/* ------------------------------------------------------- the dark map */}
+      <section className="border-y bg-[#0b1020] text-white dark:bg-black/40">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
+          <p className="eyebrow text-white/50">The gap</p>
+          <p className="font-display text-brand-red pt-3 text-5xl font-extrabold tracking-tight tabular-nums sm:text-7xl">
+            <CountUp value={darkUnits} />
+          </p>
+          <p className="font-display pt-2 text-xl font-bold text-balance sm:text-2xl">
+            polling units where NOkM has nobody.
+          </p>
+          <p className="max-w-2xl pt-4 leading-relaxed text-pretty text-white/70">
+            Out of {fmt(nationalGeo.pollingUnits)} polling units in Nigeria, the
+            movement declares canvassers in{" "}
+            {fmt(coverageLevel("unit")?.declared ?? 0)}. Every unit left dark is
+            a place where nobody is knocking on doors on election day. Find the
+            dark units in your own ward, and take one.
+          </p>
+          <div className="flex flex-wrap gap-3 pt-7">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-[#0b1020] shadow-lg hover:bg-white/90"
+            >
+              <Link href="/coverage">
+                Open the coverage map <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
+              <Link href="/coverage#gaps-near-me">Find gaps near me</Link>
+            </Button>
+          </div>
+        </div>
       </section>
 
       {/* ----------------------------------------------------- the 63M band */}
