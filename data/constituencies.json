@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "purpose": "The five races contested at a Nigerian general election, and the constituency structure beneath each one.",
+    "status": "PARTIAL — see confidence on each race, and docs/TODO-real-data.md.",
+    "note": "This file separates two very different kinds of fact. Race structure and seat totals are set by the Constitution of the Federal Republic of Nigeria 1999 (as amended) and are stable. Constituency NAMES and their LGA groupings are set by INEC delimitation, are not in this repository, and are NOT invented here. A wrong federal constituency on a political website is a serious error — worse than an absent one.",
+    "sources": {
+      "senate": "Constitution s.48 — three senators for each state, one for the FCT.",
+      "reps": "Constitution s.49 — 360 members. The per-state allocation is set by INEC delimitation and is not carried here.",
+      "assembly": "Constitution s.91 — each House of Assembly has three times the state's federal constituencies, subject to a minimum of 24 and a maximum of 40. Per-state figures are not carried here.",
+      "delimitationGap": "INEC's delimitation publications name all 109 senatorial districts, 360 federal constituencies and 993 state constituencies, with their LGA groupings. Obtaining that dataset is the outstanding action."
+    }
+  },
+
+  "races": [
+    {
+      "key": "president",
+      "label": "President",
+      "shortLabel": "President",
+      "office": "President of the Federal Republic of Nigeria",
+      "constituencyUnit": "The nation",
+      "seats": 1,
+      "confidence": "complete",
+      "scope": "national",
+      "note": "One seat, one constituency: the whole federation."
+    },
+    {
+      "key": "governor",
+      "label": "Governor",
+      "shortLabel": "Governor",
+      "office": "Governor of a State",
+      "constituencyUnit": "State",
+      "seats": 36,
+      "confidence": "complete",
+      "scope": "state",
+      "excludesFct": true,
+      "note": "36 states elect a Governor. The Federal Capital Territory does not — it is administered by a Minister appointed by the President, so there is no FCT governorship race."
+    },
+    {
+      "key": "senate",
+      "label": "Senate",
+      "shortLabel": "Senator",
+      "office": "Senator of the Federal Republic",
+      "constituencyUnit": "Senatorial district",
+      "seats": 109,
+      "confidence": "seats-only",
+      "scope": "senatorial-district",
+      "seatsPerState": 3,
+      "fctSeats": 1,
+      "note": "Three senatorial districts in each state and one for the FCT — fixed by the Constitution, so the COUNT per state is reliable. The district NAMES and their LGA groupings come from INEC delimitation and are not loaded."
+    },
+    {
+      "key": "reps",
+      "label": "House of Representatives",
+      "shortLabel": "Rep",
+      "office": "Member, House of Representatives",
+      "constituencyUnit": "Federal constituency",
+      "seats": 360,
+      "confidence": "national-total-only",
+      "scope": "federal-constituency",
+      "note": "360 seats nationally, fixed by the Constitution. How they are divided between states is INEC delimitation and is not loaded, so no per-state figure is shown."
+    },
+    {
+      "key": "assembly",
+      "label": "State House of Assembly",
+      "shortLabel": "Assembly member",
+      "office": "Member, State House of Assembly",
+      "constituencyUnit": "State constituency",
+      "seats": 993,
+      "confidence": "national-total-only",
+      "scope": "state-constituency",
+      "excludesFct": true,
+      "note": "993 seats across the 36 State Houses of Assembly. The FCT has Area Councils rather than a House of Assembly. Per-state figures depend on each state's federal constituency count and are not loaded."
+    }
+  ],
+
+  "constituencies": []
+}

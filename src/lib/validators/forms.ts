@@ -112,6 +112,41 @@ export const pledgeSchema = z.object({
 
 export type PledgeInput = z.infer<typeof pledgeSchema>;
 
+/**
+ * A request to be listed in the aspirants directory.
+ *
+ * `constituencyRef` is free text because INEC's delimitation is not loaded
+ * here and cannot be validated against — it is stored unverified and confirmed
+ * by an officer. Consent is mandatory: nobody is listed without asking.
+ */
+export const aspirantSchema = z
+  .object({
+    fullName: fullNameSchema,
+    race: z.string().min(1, "Choose which seat you are contesting"),
+    stateCode: z.string().optional(),
+    constituencyRef: z.string().trim().max(120).optional(),
+    party: z.string().trim().max(80).optional(),
+    manifesto: z
+      .string()
+      .trim()
+      .min(10, "Give at least one thing you will do")
+      .max(1500, "Keep it under 1500 characters"),
+    contact: z
+      .string()
+      .trim()
+      .min(5, "Give a phone number or email for verification")
+      .max(120),
+    consent: z.literal(true, {
+      message: "You must confirm consent before we can list anyone",
+    }),
+  })
+  .refine((v) => v.race === "president" || Boolean(v.stateCode), {
+    message: "Select the state you are contesting in",
+    path: ["stateCode"],
+  });
+
+export type AspirantInput = z.infer<typeof aspirantSchema>;
+
 export const applicationSchema = z.object({
   fullName: fullNameSchema,
   phone: phoneSchema,
