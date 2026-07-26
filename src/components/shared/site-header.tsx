@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Wordmark } from "@/components/shared/wordmark";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { navLinks, primaryNav } from "@/lib/nav";
+import { navGroups, primaryNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -82,24 +82,31 @@ export function SiteHeader() {
                     Join the movement
                   </Link>
                 </Button>
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={cn(
-                      "rounded-md px-3 py-2.5 transition-colors",
-                      isActive(link.href) ? "bg-accent" : "hover:bg-accent"
-                    )}
-                  >
-                    <span className="block text-sm font-medium">
-                      {link.label}
-                    </span>
-                    <span className="text-muted-foreground block text-xs">
-                      {link.description}
-                    </span>
-                  </Link>
+                {navGroups.map((group) => (
+                  <div key={group.heading} className="pt-3 first:pt-0">
+                    <p className="eyebrow text-muted-foreground/70 px-3 pb-1.5">
+                      {group.heading}
+                    </p>
+                    {group.links.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                        className={cn(
+                          "block rounded-md px-3 py-2.5 transition-colors",
+                          isActive(link.href) ? "bg-accent" : "hover:bg-accent"
+                        )}
+                      >
+                        <span className="block text-sm font-medium">
+                          {link.label}
+                        </span>
+                        <span className="text-muted-foreground block text-xs">
+                          {link.description}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
                 ))}
                 <Link
                   href="/dashboard"

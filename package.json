@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run sync:public && next dev",
+    "prebuild": "npm run sync:public",
+    "sync:public": "node scripts/sync-public-data.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
