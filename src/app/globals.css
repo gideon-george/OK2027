@@ -304,6 +304,28 @@
   animation-delay: 0.32s;
 }
 
+/* The officer mosaic: two rows of portraits drifting in opposite directions.
+   Translating by exactly -50% works because each row renders its photos twice,
+   so the loop point is invisible. */
+@keyframes mosaic-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* The activity ticker. Same duplication trick, vertical. */
+@keyframes ticker-scroll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up {
     animation: none;
@@ -312,6 +334,12 @@
   .card-lift:hover {
     transform: none;
     transition: none;
+  }
+  /* The mosaic and ticker carry no information that is not also on the page as
+     text, so stopping them outright is the correct reduced-motion behaviour. */
+  [class*="mosaic-drift"],
+  [class*="ticker-scroll"] {
+    animation: none !important;
   }
 }
 

@@ -5,18 +5,50 @@ import { Button } from "@/components/ui/button";
 import { StatTile } from "@/components/shared/stat-tile";
 import { AppointmentCard } from "@/components/structure/appointment-card";
 import {
+  GalleryView,
+  type GalleryEntry,
+} from "@/components/structure/gallery-view";
+import {
+  appointments,
   appointmentsForState,
   coverage,
   nationalRoster,
+  statusLabels,
   zoneCoverage,
 } from "@/lib/structure";
-import { geoForState } from "@/lib/geo";
+import { geoForState, states } from "@/lib/geo";
 
 export const metadata: Metadata = {
   title: "Structure",
   description:
     "The full NOkM structure — national executives, zonal coordinators and state coordinators across all 36 states and the FCT. Filled posts and open vacancies.",
 };
+
+const levelForScope: Record<string, GalleryEntry["level"]> = {
+  national: "National",
+  diaspora: "Diaspora",
+  zone: "Zonal",
+  state: "State",
+};
+
+/** Flattened once at build time so the client component ships data, not logic. */
+const galleryEntries: GalleryEntry[] = appointments
+  .map((a) => ({
+    slug: a.slug,
+    holderName: a.holderName,
+    officeTitle: a.office.title,
+    scopeLabel: a.scopeLabel,
+    level: levelForScope[a.scopeType],
+    stateCode: a.scopeType === "state" ? a.scopeCode : null,
+    filled: a.filled,
+    statusLabel: statusLabels[a.status],
+  }))
+  .sort((a, b) => {
+    if (a.filled !== b.filled) return a.filled ? -1 : 1;
+    return a.scopeLabel.localeCompare(b.scopeLabel);
+  });
+
+const galleryStates = states.map((s) => ({ code: s.code, name: s.name }));
 
 export default function StructurePage() {
   return (
@@ -55,6 +87,27 @@ export default function StructurePage() {
         />
         <StatTile tone="red" value={coverage.vacanciesTotal} label="Posts open" />
       </div>
+
+      {/* ------------------------------------------------------- the gallery */}
+      <section className="pt-14">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 pb-1">
+          <h2 className="font-display text-2xl font-bold">
+            Everyone, and every open seat
+          </h2>
+          <Link
+            href="/leadership"
+            className="text-primary text-sm hover:underline"
+          >
+            The leadership →
+          </Link>
+        </div>
+        <p className="text-muted-foreground pb-6 text-sm">
+          Every post in the movement, searchable. Officers appear with their
+          initials until they upload a portrait and record their consent to it
+          being published.
+        </p>
+        <GalleryView entries={galleryEntries} states={galleryStates} />
+      </section>
 
       <section className="pt-14">
         <div className="flex flex-wrap items-baseline justify-between gap-2 pb-1">

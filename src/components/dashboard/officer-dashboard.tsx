@@ -10,6 +10,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BackendNotice } from "@/components/shared/backend-notice";
 import { OfficerSignIn } from "@/components/dashboard/officer-sign-in";
 import { ReportForm } from "@/components/dashboard/report-form";
+import { PhotoUpload } from "@/components/dashboard/photo-upload";
+import { PhotoQueue } from "@/components/dashboard/photo-queue";
 import { getSupabase } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { generalKpis } from "@/lib/kpis";
@@ -267,6 +269,7 @@ export function OfficerDashboard() {
           <TabsTrigger value="overview">This week</TabsTrigger>
           <TabsTrigger value="report">Submit report</TabsTrigger>
           <TabsTrigger value="scorecard">My scorecard</TabsTrigger>
+          <TabsTrigger value="photo">My photo</TabsTrigger>
           <TabsTrigger value="directives">
             Directives
             {unacked.length > 0 && (
@@ -387,6 +390,27 @@ export function OfficerDashboard() {
               </p>
             </div>
           )}
+        </TabsContent>
+
+        <TabsContent value="photo" className="space-y-6 pt-4">
+          <PhotoUpload
+            appointmentSlug={appointment.slug}
+            holderName={appointment.holder_name ?? "NOkM officer"}
+          />
+
+          {/* Row-level security decides who can actually approve; a state
+              officer opening this sees an empty queue, not an error. */}
+          <div>
+            <h3 className="font-display pb-1 font-semibold">
+              Portraits awaiting approval
+            </h3>
+            <p className="text-muted-foreground pb-3 text-sm leading-relaxed">
+              Visible to the National Publicity Secretary and the National
+              Secretary. A portrait with no recorded consent cannot be approved
+              — the database refuses it.
+            </p>
+            <PhotoQueue />
+          </div>
         </TabsContent>
 
         <TabsContent value="directives" className="space-y-3 pt-4">

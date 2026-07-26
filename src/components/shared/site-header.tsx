@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 import { Wordmark } from "@/components/shared/wordmark";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { DataLightToggle } from "@/components/shared/data-light";
 import { navGroups, primaryNav } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
@@ -52,6 +53,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1.5">
+          <DataLightToggle className="hidden sm:flex" />
           <ThemeToggle />
           <Button asChild size="sm" className="hidden shadow-sm sm:inline-flex">
             <Link href="/join">Join the movement</Link>
@@ -120,6 +122,18 @@ export function SiteHeader() {
                     Submit reports and see your scorecard.
                   </span>
                 </Link>
+
+                <div className="mt-4 flex items-center justify-between gap-3 rounded-md border px-3 py-2.5">
+                  <span>
+                    <span className="block text-sm font-medium">
+                      Data-light mode
+                    </span>
+                    <span className="text-muted-foreground block text-xs">
+                      Skip photos and animations to save data.
+                    </span>
+                  </span>
+                  <DataLightToggle />
+                </div>
               </div>
             </SheetContent>
           </Sheet>

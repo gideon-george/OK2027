@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { OfficerPortrait } from "@/components/shared/officer-portrait";
+import { LivePortrait } from "@/components/shared/live-portrait";
+import { PhotoProvider } from "@/components/shared/photo-provider";
 import { ContactActions } from "@/components/shared/contact-actions";
 import { SocialLinks } from "@/components/shared/social-links";
 import { nationalRoster, statusLabels, zonalRoster } from "@/lib/structure";
@@ -22,13 +23,14 @@ const workingCommittee = nationalRoster.filter(
 
 export default function LeadershipPage() {
   return (
-    <div>
+    <PhotoProvider>
       {/* ------------------------------------------- the National Coordinator */}
       <section className="hero-surface border-b">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
           <p className="eyebrow text-brand-red">Leadership</p>
           <div className="grid gap-8 pt-6 sm:grid-cols-[minmax(0,14rem)_1fr] sm:items-start sm:gap-10">
-            <OfficerPortrait
+            <LivePortrait
+              appointmentSlug={nationalCoordinator.appointmentSlug}
               name={nationalCoordinator.name}
               size="xl"
               tone="blue"
@@ -97,7 +99,8 @@ export default function LeadershipPage() {
           {workingCommittee.map((appointment) => (
             <li key={appointment.slug}>
               <Link href={`/structure/${appointment.slug}`} className="group block">
-                <OfficerPortrait
+                <LivePortrait
+                  appointmentSlug={appointment.slug}
                   name={appointment.holderName}
                   tone={appointment.filled ? "blue" : "muted"}
                   size="lg"
@@ -142,7 +145,8 @@ export default function LeadershipPage() {
                   href={`/structure/${appointment.slug}`}
                   className="group block"
                 >
-                  <OfficerPortrait
+                  <LivePortrait
+                    appointmentSlug={appointment.slug}
                     name={appointment.holderName}
                     tone={appointment.filled ? "green" : "muted"}
                     size="lg"
@@ -186,6 +190,6 @@ export default function LeadershipPage() {
           </div>
         </div>
       </section>
-    </div>
+    </PhotoProvider>
   );
 }

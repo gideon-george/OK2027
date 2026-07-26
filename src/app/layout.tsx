@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
 import { ContactFab } from "@/components/shared/contact-fab";
+import { DataLightProvider } from "@/components/shared/data-light";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import {
   basePath,
@@ -88,18 +89,20 @@ export default function RootLayout({
         className={`${bricolageGrotesque.variable} ${dmSans.variable} flex min-h-screen flex-col font-sans antialiased`}
       >
         <ThemeProvider>
-          <a
-            href="#main"
-            className="focus:bg-background sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-md focus:border focus:px-3 focus:py-2 focus:text-sm"
-          >
-            Skip to content
-          </a>
-          <SiteHeader />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-          <ContactFab />
+          <DataLightProvider>
+            <a
+              href="#main"
+              className="focus:bg-background sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:rounded-md focus:border focus:px-3 focus:py-2 focus:text-sm"
+            >
+              Skip to content
+            </a>
+            <SiteHeader />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+            <ContactFab />
+          </DataLightProvider>
         </ThemeProvider>
         <script
           type="application/ld+json"
