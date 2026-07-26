@@ -79,6 +79,13 @@ export function SiteFooter() {
 
             <div className="pt-5">
               <p className="eyebrow text-muted-foreground/70 pb-2.5">Contact</p>
+              <address className="text-muted-foreground pb-2.5 text-sm not-italic">
+                National Secretariat
+                <br />
+                {officialContact.secretariat.line1}
+                <br />
+                {officialContact.secretariat.state}
+              </address>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a

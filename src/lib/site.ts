@@ -21,6 +21,8 @@ export const site = {
   tagline: "One Nation. One Voice. One Future.",
   motto: "Structure. Mobilize. Secure. Grow. Lead. Deliver.",
   rallyingCry: "A New Nigeria Is Possible.",
+  /** Printed on the foot of official NOkM headed paper. */
+  strapline: "Mobilizing Minds · Inspiring Hope · Building a New Nigeria for All",
   description:
     "The National OK Movement is an independent grassroots support movement mobilising for Peter Obi and Rabiu Kwankwaso in Nigeria's 2027 general election. Register, find your structure, and organise peacefully.",
 } as const;
@@ -98,6 +100,15 @@ export const principals = [
 export const officialContact = {
   email: "nokm2026@gmail.com",
   /**
+   * The National Secretariat, as printed on NOkM headed paper.
+   * Source: letter ref NDC/NOKM/001/2026, 3 July 2026.
+   */
+  secretariat: {
+    line1: "No. 10 Centenary City, A1",
+    state: "Ebonyi State",
+    country: "Nigeria",
+  },
+  /**
    * International format, digits only, no leading "+". Null until supplied
    * with consent — every call site falls back to email.
    */
@@ -146,6 +157,32 @@ export function mailLink(subject?: string): string {
   const base = `mailto:${officialContact.email}`;
   return subject ? `${base}?subject=${encodeURIComponent(subject)}` : base;
 }
+
+/**
+ * Where NOkM stands with the NDC.
+ *
+ * Modelled precisely, because the difference matters. NOkM applied on
+ * 17 July 2026 to be registered as an official support group of the Nigeria
+ * Democratic Congress, and the NDC's Directorate of Support Groups stamped the
+ * application received on 22 July 2026.
+ *
+ * A received stamp is an ACKNOWLEDGEMENT, not an approval. Until a letter of
+ * recognition exists, the site says the application is with the party — never
+ * that NOkM is a registered support group. Set `recognitionGranted` and add the
+ * date only when a recognition letter is in hand.
+ *
+ * Note that even full registration would not change the standing disclaimer
+ * below: a registered support group is still not an organ of the party.
+ */
+export const partyAffiliation = {
+  party: "Nigeria Democratic Congress (NDC)",
+  partyMotto: "Service to the People",
+  applicationRef: "NDC/NOKM/001/2026",
+  applicationSubmitted: "2026-07-17",
+  acknowledgedByParty: "2026-07-22",
+  recognitionGranted: null as string | null,
+  directorate: "Directorate of Support Groups",
+} as const;
 
 /**
  * Standing disclaimer. Required in the footer of every page and above the

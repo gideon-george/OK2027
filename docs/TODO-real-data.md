@@ -47,6 +47,69 @@ rule that facts are marked verified or unverified and never confused.
 
 For official results, INEC is the source.
 
+## Source documents held
+
+Two photographed NOkM letters on official headed paper, supplied 26 July 2026.
+
+| Document | Date | Ref |
+|---|---|---|
+| Letter of Introduction to the NDC National Secretariat | 3 July 2026 | NDC/NOKM/001/2026 |
+| Letter of Request for Registration as an Official Support Group | 17 July 2026 | — |
+
+**What they confirm and add:**
+
+- National Secretariat address: **No. 10 Centenary City, A1, Ebonyi State**. Now
+  in `officialContact.secretariat` and in the `PostalAddress` structured data.
+- Official email `nokm2026@gmail.com` — matches what was already published.
+- NOkM strapline: *"Mobilizing Minds · Inspiring Hope · Building a New Nigeria
+  for All"*. Now `site.strapline`.
+- NDC motto: *"Service to the People"*.
+- Registration application submitted **17 July 2026**, stamped received by the
+  NDC Directorate of Support Groups on **22 July 2026**.
+
+**Party affiliation status — stated precisely.** The stamp is an
+acknowledgement of receipt, not an approval. `partyAffiliation` records
+`acknowledgedByParty` with `recognitionGranted: null`. The site must not say
+NOkM is a registered support group until a letter of recognition exists. Even
+then, the independence disclaimer stands: a registered support group is still
+not an organ of the party.
+
+### Conflicts these documents create — UNRESOLVED
+
+**1. Named officeholders.** The letters are signed by people the roster does
+not have in those seats:
+
+| Office | Roster (`data/nokm-structure.json`) | Letter signatory, July 2026 |
+|---|---|---|
+| National Secretary | Emmanuel Chigoziri Okorie | Comrd. Nathaniel Adepoju |
+| National Legal Adviser | Amb. Chief Bar. Victor Opurum | *(name not legible in the photograph)* |
+
+Not changed. A named officeholder is not overwritten on the strength of a
+photograph — either the roster is stale or the signatory was acting.
+**Action: National Secretary to confirm which is current, and from what date.**
+
+**2. Coverage figures.** The 3 July letter and the 26 July declaration disagree,
+and the earlier document claims *more*:
+
+| Level | Letter, 3 July 2026 | Declared, 26 July 2026 |
+|---|---|---|
+| National executives | 28 | 28 ✓ |
+| Zonal leaders | 6 | 6 ✓ |
+| State coordinators | "36 + FCT" | 26 |
+| LGA coordinators | 774 | 544 |
+| Members | "over 5k+" | not declared |
+
+The likely reading is that the letter describes the structure the movement is
+*organised to cover* while the declaration counts posts *actually filled* — but
+that is an inference, not a fact, so neither figure has been changed. The site
+continues to publish the 26 July declaration, which is the later and more
+conservative of the two.
+
+**Action: confirm whether 544 or 774 is the true filled count, and whether
+"5k+ members" is a current membership figure.** Note that 5,000 members cannot
+sit alongside 124,258 polling-unit canvassers; one of those two numbers means
+something different from what it appears to mean.
+
 ## Declared coverage vs the named roster — Wave 4
 
 National Coordination declared the movement's national footprint on

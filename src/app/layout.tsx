@@ -68,6 +68,12 @@ const organisationJsonLd = {
   description: site.description,
   areaServed: "NG",
   email: officialContact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: officialContact.secretariat.line1,
+    addressRegion: officialContact.secretariat.state,
+    addressCountry: "NG",
+  },
   disambiguatingDescription:
     "An independent grassroots support movement. Not an organ of the Nigeria Democratic Congress.",
   founder: {
