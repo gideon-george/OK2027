@@ -99,16 +99,28 @@ and the earlier document claims *more*:
 | LGA coordinators | 774 | 544 |
 | Members | "over 5k+" | not declared |
 
-The likely reading is that the letter describes the structure the movement is
-*organised to cover* while the declaration counts posts *actually filled* — but
-that is an inference, not a fact, so neither figure has been changed. The site
-continues to publish the 26 July declaration, which is the later and more
-conservative of the two.
+**Resolved as a presentation decision, 26 July 2026: show both, labelled.**
 
-**Action: confirm whether 544 or 774 is the true filled count, and whether
-"5k+ members" is a current membership figure.** Note that 5,000 members cannot
-sit alongside 124,258 polling-unit canvassers; one of those two numbers means
-something different from what it appears to mean.
+The letter figures are held in an `organisedFor` field on the `state` and `lga`
+levels, with their own source and date, and render beneath the declared count
+as *"774 organised to cover — NOkM letter to the NDC, 3 July 2026"*. They are
+never substituted into `declared`, never used for the gap arithmetic, and never
+drive the map. The same build guard applies to them: an `organisedFor` figure
+larger than the country fails the build.
+
+The reading behind the labels — that the letter describes the structure the
+movement is organised to cover while the declaration counts posts actually
+filled — is still an inference. **Action: National Secretariat to confirm.**
+
+**Membership: deliberately not published.** The 3 July letter mentions "over
+5k+ members". It is not on the site and no membership figure is, because 5,000
+members cannot sit alongside 124,258 polling-unit canvassers — one of those two
+numbers means something other than it appears to. **Action: leadership to
+confirm what the membership figure counts and as of when.** Until then the site
+shows no national membership total.
+
+**National Secretary and Legal Adviser: left as the roster has them**, pending
+confirmation from the Secretariat.
 
 ## Declared coverage vs the named roster — Wave 4
 

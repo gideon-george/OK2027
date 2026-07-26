@@ -83,6 +83,19 @@ export default function CoveragePage() {
             <CoverageTile key={level.key} level={level} />
           ))}
         </div>
+
+        <p className="text-muted-foreground max-w-3xl pt-4 text-xs leading-relaxed">
+          <strong className="text-foreground font-medium">
+            Why some tiles carry two figures.
+          </strong>{" "}
+          The movement&apos;s letter of introduction to the NDC, dated 3 July
+          2026, describes the structure NOkM is organised to cover — 37 states
+          and all 774 LGAs. The declaration of {formatAsOf(coverageMeta.asOf)}{" "}
+          reports the posts actually filled. Both are official, they disagree,
+          and the earlier one claims more. Rather than choose between two
+          documents from the same movement, this page publishes each with its
+          own date and drives the map from the more conservative one.
+        </p>
       </section>
 
       {/* -------------------------------------------------------------- grid */}

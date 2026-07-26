@@ -26,6 +26,22 @@ export type CoverageKey =
   | "ward"
   | "unit";
 
+/**
+ * A larger figure from an earlier official document, describing the structure
+ * the movement is organised to cover rather than the posts actually filled.
+ *
+ * Kept as its own shape so it can never be mistaken for, or substituted into,
+ * the declared count. Two official NOkM documents disagree here and the older
+ * one claims more; the platform publishes both with their own dates rather
+ * than picking the flattering one.
+ */
+export interface OrganisedFor {
+  value: number;
+  label: string;
+  source: string;
+  asOf: string;
+}
+
 interface RawLevel {
   key: string;
   label: string;
@@ -35,6 +51,7 @@ interface RawLevel {
   universeLabel: string;
   universeSource: string | null;
   rosterKey: string | null;
+  organisedFor?: OrganisedFor;
   note?: string;
 }
 
@@ -56,6 +73,8 @@ export interface CoverageLevel {
   pct: number | null;
   /** declared - named. Positive means leadership reports more than is named. */
   unnamed: number | null;
+  /** An earlier, larger claim from an official document. Never substituted. */
+  organisedFor?: OrganisedFor;
   note?: string;
 }
 
@@ -111,6 +130,20 @@ const levels: CoverageLevel[] = (declared.levels as RawLevel[]).map((raw) => {
     );
   }
 
+  // The same rule applies to the document figure: nothing may exceed the
+  // country. Without this an "organised to cover" number could quietly carry a
+  // claim the declared count is not allowed to make.
+  if (
+    raw.organisedFor &&
+    raw.universe !== null &&
+    raw.organisedFor.value > raw.universe
+  ) {
+    throw new Error(
+      `[coverage] "${raw.label}" organisedFor (${raw.organisedFor.value}) exceeds ` +
+        `its universe (${raw.universe}) in data/nokm-coverage-declared.json.`
+    );
+  }
+
   const expected = realUniverse[key];
   if (expected !== undefined && raw.universe !== expected) {
     throw new Error(
@@ -134,6 +167,7 @@ const levels: CoverageLevel[] = (declared.levels as RawLevel[]).map((raw) => {
     gap: raw.universe === null ? null : raw.universe - raw.declared,
     pct: raw.universe === null ? null : round1((raw.declared / raw.universe) * 100),
     unnamed: named === null ? null : raw.declared - named,
+    organisedFor: raw.organisedFor,
     note: raw.note,
   };
 });

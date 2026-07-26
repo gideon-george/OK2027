@@ -59,6 +59,13 @@ export function DeclaredFigure({
           </Link>
         </p>
       )}
+      {level.organisedFor && (
+        <p className="text-muted-foreground/80 pt-0.5 text-xs leading-snug">
+          {fmt(level.organisedFor.value)} {level.organisedFor.label}, per the
+          movement&apos;s letter to the NDC of{" "}
+          {formatAsOf(level.organisedFor.asOf)}
+        </p>
+      )}
     </div>
   );
 }
@@ -151,8 +158,17 @@ export function CoverageTile({ level }: { level: CoverageLevel }) {
       )}
 
       {level.named !== null && level.named !== level.declared && (
-        <p className="text-muted-foreground mt-auto pt-2 text-[0.7rem] leading-snug">
+        <p className="text-muted-foreground pt-2 text-[0.7rem] leading-snug">
           {fmt(level.named)} named on the roster
+        </p>
+      )}
+
+      {/* An earlier official document claims more. Both are shown, each dated,
+          rather than the platform choosing between two official sources. */}
+      {level.organisedFor && (
+        <p className="text-muted-foreground/80 mt-auto pt-2 text-[0.7rem] leading-snug">
+          {fmt(level.organisedFor.value)} {level.organisedFor.label} —{" "}
+          NOkM letter to the NDC, {formatAsOf(level.organisedFor.asOf)}
         </p>
       )}
     </div>

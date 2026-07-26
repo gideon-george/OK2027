@@ -5,7 +5,8 @@
     "asOf": "2026-07-26",
     "asOfIsReceiptDate": true,
     "note": "Declared coverage as reported by National Coordination. These are the movement's own operational figures, not counts of named records held in this platform. Where the roster names fewer people than are declared, both numbers are shown. See docs/TODO-real-data.md for every outstanding delta.",
-    "asOfNote": "asOf is the date these figures were received from National Coordination, not a confirmed census date. Leadership to confirm the date each count was taken."
+    "asOfNote": "asOf is the date these figures were received from National Coordination, not a confirmed census date. Leadership to confirm the date each count was taken.",
+    "organisedForNote": "Some levels carry an organisedFor figure taken from the 3 July 2026 Letter of Introduction, which describes the structure the movement is organised to cover. It is EARLIER and LARGER than the declared filled count and is never substituted for it — both are shown, each with its own source and date. See docs/TODO-real-data.md."
   },
   "levels": [
     {
@@ -48,7 +49,13 @@
       "universe": 37,
       "universeLabel": "states and the FCT",
       "universeSource": "geo.ts",
-      "rosterKey": "state"
+      "rosterKey": "state",
+      "organisedFor": {
+        "value": 37,
+        "source": "Letter of Introduction to the NDC National Secretariat, ref NDC/NOKM/001/2026",
+        "asOf": "2026-07-03",
+        "label": "organised to cover"
+      }
     },
     {
       "key": "lga",
@@ -58,7 +65,13 @@
       "universe": 774,
       "universeLabel": "local government areas",
       "universeSource": "geo.ts",
-      "rosterKey": null
+      "rosterKey": null,
+      "organisedFor": {
+        "value": 774,
+        "source": "Letter of Introduction to the NDC National Secretariat, ref NDC/NOKM/001/2026",
+        "asOf": "2026-07-03",
+        "label": "organised to cover"
+      }
     },
     {
       "key": "ward",
