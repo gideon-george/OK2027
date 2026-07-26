@@ -38,6 +38,33 @@ export const joinSchema = z.object({
 
 export type JoinInput = z.infer<typeof joinSchema>;
 
+/**
+ * Adopting a polling unit.
+ *
+ * `wardCode` is validated against the loaded register; `puLabel` cannot be,
+ * because unit identities are not in this repository — only counts per LGA.
+ * The member types what is written at their own unit and an officer confirms
+ * it. See supabase/migrations/006_nokm_adoptions.sql.
+ */
+export const adoptSchema = z.object({
+  fullName: fullNameSchema,
+  phone: phoneSchema,
+  stateCode: z.string().min(1, "Select your state"),
+  lgaCode: z.string().min(1, "Select your LGA"),
+  wardCode: z.string().min(1, "Select your ward"),
+  puLabel: z
+    .string()
+    .trim()
+    .min(2, "Enter the name or number of your polling unit")
+    .max(120, "That is too long for a polling unit name"),
+  pledgeNote: z.string().trim().max(500).optional(),
+  consent: z.literal(true, {
+    message: "You must agree before we can record your claim",
+  }),
+});
+
+export type AdoptInput = z.infer<typeof adoptSchema>;
+
 export const contactOfficeSchema = z.object({
   fromName: fullNameSchema,
   fromContact: z

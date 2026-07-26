@@ -91,6 +91,11 @@ export const navGroups: NavGroup[] = [
         description: "Claim the unit where you vote and stand for it.",
       },
       {
+        href: "/bring-ten",
+        label: "Each one bring ten",
+        description: "Your referral code, your count, your ward ranking.",
+      },
+      {
         href: "/support",
         label: "Support",
         description: "Give in cash or in kind, and see where it goes.",
