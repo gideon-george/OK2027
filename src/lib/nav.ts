@@ -8,6 +8,11 @@ export interface NavLink {
 
 export const navLinks: NavLink[] = [
   {
+    href: "/leadership",
+    label: "Leadership",
+    description: "The National Coordinator and the national executive.",
+  },
+  {
     href: "/structure",
     label: "Structure",
     description: "National, zonal and state offices — filled and vacant.",

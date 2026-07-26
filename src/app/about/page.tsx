@@ -2,9 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { OfficerPortrait } from "@/components/shared/officer-portrait";
+import { ContactActions } from "@/components/shared/contact-actions";
 import {
+  SocialLinks,
+  SocialLinksPending,
+} from "@/components/shared/social-links";
+import {
+  builtBy,
   conductDisclaimer,
   independenceDisclaimer,
+  nationalCoordinator,
   principals,
   site,
 } from "@/lib/site";
@@ -67,7 +75,7 @@ const principles = [
   {
     title: "Privacy by default",
     description:
-      "PVC and VIN numbers are never collected. Officer phone numbers are never published. What isn't needed isn't kept.",
+      "PVC and VIN numbers are never collected. No officer's personal number is published — only the movement's own official contact line. What isn't needed isn't kept.",
   },
 ];
 
@@ -117,6 +125,32 @@ export default function AboutPage() {
       </section>
 
       <section className="pt-10">
+        <h2 className="font-display pb-4 text-xl font-semibold">Who leads it</h2>
+        <div className="bg-card flex flex-wrap items-center gap-5 rounded-xl border p-5">
+          <OfficerPortrait
+            name={nationalCoordinator.name}
+            size="lg"
+            className="w-24 shrink-0"
+          />
+          <div className="min-w-[14rem] flex-1">
+            <p className="font-display text-lg font-bold">
+              {nationalCoordinator.name}
+            </p>
+            <p className="text-brand-blue text-sm font-semibold text-pretty">
+              {nationalCoordinator.title}
+            </p>
+            <p className="text-muted-foreground pt-1 text-sm leading-relaxed">
+              The Coordinator presides over national meetings and supervises
+              every structure from national down to polling unit.
+            </p>
+            <Button asChild size="sm" variant="outline" className="mt-3">
+              <Link href="/leadership">See the full leadership</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-10">
         <h2 className="font-display pb-3 text-xl font-semibold">
           Our relationship with the NDC
         </h2>
@@ -162,6 +196,21 @@ export default function AboutPage() {
       </section>
 
       <section className="pt-10">
+        <h2 className="font-display pb-3 text-xl font-semibold">Reach us</h2>
+        <p className="text-muted-foreground pb-4 text-sm leading-relaxed">
+          One official email and one official line. Anyone contacting you from
+          any other address, claiming to speak for the movement, should be
+          checked against this page first.
+        </p>
+        <ContactActions
+          message="Hello NOkM, I have a question about the movement."
+          subject="Enquiry from the NOkM website"
+        />
+        <SocialLinks className="pt-4" />
+        <SocialLinksPending />
+      </section>
+
+      <section className="pt-10">
         <div className="rounded-lg border p-6">
           <h2 className="font-display text-lg font-semibold">
             Come and do the work
@@ -180,6 +229,11 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <p className="text-muted-foreground pt-10 text-xs">
+        This platform was built by {builtBy.name} ({builtBy.role}) for the
+        National OK Movement.
+      </p>
     </div>
   );
 }

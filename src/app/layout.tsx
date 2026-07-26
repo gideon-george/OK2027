@@ -2,8 +2,17 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/shared/site-header";
 import { SiteFooter } from "@/components/shared/site-footer";
+import { ContactFab } from "@/components/shared/contact-fab";
 import { ThemeProvider } from "@/components/shared/theme-provider";
-import { basePath, site, siteOrigin, siteUrl } from "@/lib/site";
+import {
+  basePath,
+  nationalCoordinator,
+  officialContact,
+  site,
+  siteOrigin,
+  siteUrl,
+  socials,
+} from "@/lib/site";
 import "./globals.css";
 
 const bricolageGrotesque = Bricolage_Grotesque({
@@ -55,8 +64,17 @@ const organisationJsonLd = {
   slogan: site.tagline,
   description: site.description,
   areaServed: "NG",
+  email: officialContact.email,
   disambiguatingDescription:
     "An independent grassroots support movement. Not an organ of the Nigeria Democratic Congress.",
+  founder: {
+    "@type": "Person",
+    name: nationalCoordinator.name,
+    jobTitle: nationalCoordinator.title,
+  },
+  // Only real, supplied URLs. An invented sameAs would tell search engines an
+  // account the movement does not control is officially theirs.
+  ...(socials.length > 0 ? { sameAs: socials.map((s) => s.url) } : {}),
 };
 
 export default function RootLayout({
@@ -81,6 +99,7 @@ export default function RootLayout({
             {children}
           </main>
           <SiteFooter />
+          <ContactFab />
         </ThemeProvider>
         <script
           type="application/ld+json"

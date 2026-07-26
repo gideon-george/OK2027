@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Info } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ContactActions } from "@/components/shared/contact-actions";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -93,15 +93,17 @@ export default function StorePage() {
                 card details — deliberately, so that nobody can pose as NOkM to
                 collect money through it.
               </p>
-              <Badge variant="outline" className="mt-3">
-                Ordering contact not yet published
-              </Badge>
+              <ContactActions
+                className="pt-4"
+                message="Hello NOkM, I want to order official branded wear. Please tell me sizes, prices and how to pay."
+                subject="Merchandise order enquiry"
+                size="sm"
+              />
               <p className="text-muted-foreground pt-3 text-sm leading-relaxed">
-                Until the official ordering number is published here, go through
-                the Director of Programs &amp; Events, who can direct you to an
+                The Director of Programs &amp; Events can also direct you to an
                 authorised supplier.
               </p>
-              <Button asChild size="sm" variant="outline" className="mt-4">
+              <Button asChild size="sm" variant="ghost" className="mt-2 -ml-3">
                 <Link href="/structure/national-director-programs-events">
                   Contact that office
                 </Link>

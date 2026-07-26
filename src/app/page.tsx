@@ -11,9 +11,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StatTile } from "@/components/shared/stat-tile";
+import { OfficerPortrait } from "@/components/shared/officer-portrait";
 import { coverage } from "@/lib/structure";
 import { nationalBaseline, nationalUntapped } from "@/lib/baseline";
-import { independenceDisclaimer, principals, site } from "@/lib/site";
+import {
+  independenceDisclaimer,
+  nationalCoordinator,
+  principals,
+  site,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const pillars = [
@@ -324,6 +330,39 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------ coordinator's word */}
+      <section className="mx-auto max-w-4xl px-4 py-14">
+        <div className="bg-card relative overflow-hidden rounded-xl border p-6 sm:p-8">
+          <span className="tricolor absolute inset-y-0 left-0 w-1" aria-hidden />
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <OfficerPortrait
+              name={nationalCoordinator.name}
+              size="lg"
+              className="w-28 shrink-0"
+            />
+            <div className="min-w-0 flex-1">
+              <p className="eyebrow text-brand-red">A word from the Coordinator</p>
+              <blockquote className="pt-3">
+                <p className="font-display text-xl leading-snug font-bold text-balance sm:text-2xl">
+                  {nationalCoordinator.statement ?? site.rallyingCry}
+                </p>
+              </blockquote>
+              <p className="pt-4 text-sm font-semibold">
+                {nationalCoordinator.name}
+              </p>
+              <p className="text-muted-foreground text-xs text-pretty">
+                {nationalCoordinator.title} · {nationalCoordinator.organisation}
+              </p>
+              <Button asChild variant="outline" size="sm" className="mt-5">
+                <Link href="/leadership">
+                  Meet the leadership <ArrowRight className="size-3.5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
