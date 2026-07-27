@@ -321,6 +321,14 @@ export default function Home() {
               variant="outline"
               className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
+              <Link href="/arithmetic">Work out what winning costs</Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
               <Link href="/join">Register in your ward</Link>
             </Button>
           </div>

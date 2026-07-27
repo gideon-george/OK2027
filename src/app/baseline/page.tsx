@@ -69,9 +69,14 @@ export default function BaselinePage() {
             movement&apos;s entire opportunity, and it sits in identifiable
             wards and polling units.
           </p>
-          <Button asChild size="sm" className="mt-4">
-            <Link href="/join">Register in your ward</Link>
-          </Button>
+          <div className="flex flex-wrap gap-2 pt-4">
+            <Button asChild size="sm">
+              <Link href="/join">Register in your ward</Link>
+            </Button>
+            <Button asChild size="sm" variant="outline">
+              <Link href="/arithmetic">Work out what winning costs</Link>
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -254,6 +254,39 @@ file. **None are hard-coded.** Before Supabase is provisioned these render as
 honest empty states ("no members registered yet"), never as a placeholder
 figure. 2023 baseline figures are computed at build time from the dataset.
 
+## Projections — `/arithmetic`
+
+`/arithmetic` is the only page on the site whose numbers are not counts of
+something that already happened. It is a **projection**, and it is labelled as
+one in the page header, in the metadata description and in an assumptions panel
+at the foot of the page.
+
+What keeps it inside the movement's own rule that facts are marked verified or
+unverified and never confused:
+
+- Its only inputs are the 2023 register and 2023 accreditation from
+  `data/baseline-2023.json` — the same figures `/baseline` publishes.
+- **No per-party 2023 vote counts are used**, in keeping with the exclusion
+  recorded above. The model contains no assumption about who anyone votes for.
+- The share of the vote is a **user input**, not a platform claim. Nothing on
+  the page asserts a 2027 result, for NOkM or for anyone else.
+- Every output is a division sum, so any figure can be re-derived by hand from
+  the baseline table.
+- Uniform turnout, uniform share and pro-rata registration growth are
+  simplifications. They are listed explicitly on the page rather than left
+  implicit here.
+
+**Section 134.** The spread test is modelled under both readings of the FCT
+clause — as one of the federating units, and as a separate mandatory condition.
+The page says the courts settled on the former after 2023, presents the summary
+as plain English for organisers rather than legal advice, and does not pick the
+flattering reading. Under a uniform-turnout model the two readings select the
+same 25 states, and the page says so.
+
+**Outstanding.** State-level turnout and registration forecasts would make the
+model sharper, and neither can be defended today. Do not add them without a
+source that can be named on the page.
+
 ## Configuration that does not follow the base path
 
 **Resolved in Wave 4.** `public/manifest.json` used to hard-code `/OK2027` in

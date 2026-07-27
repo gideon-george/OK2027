@@ -19,6 +19,7 @@ const staticRoutes = [
   { path: "/support", priority: 0.85 },
   { path: "/vacancies", priority: 0.8 },
   { path: "/baseline", priority: 0.8 },
+  { path: "/arithmetic", priority: 0.8 },
   { path: "/pvc", priority: 0.8 },
   { path: "/bring-ten", priority: 0.75 },
   { path: "/action-plan", priority: 0.7 },

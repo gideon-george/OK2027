@@ -33,6 +33,7 @@ record that persists.
 | `/support` | Give in kind (open) or in cash (gated), with a public ledger. |
 | `/bring-ten` | Your referral code, your count, your ward ranking. |
 | `/baseline` | Every polling unit in Nigeria, the 2023 register and turnout, and the 63.2M registered voters who did not vote. |
+| `/arithmetic` | The arithmetic of victory: what winning costs at any turnout and share, the section 134 spread test under both of its readings, and the answer divided down to one polling unit. |
 | `/structure` | Every national, zonal and state office. 70 posts, filled and vacant. |
 | `/vacancies` | Open posts with an application and vetting flow. |
 | `/join` | Member registration, placed down to ward level. |

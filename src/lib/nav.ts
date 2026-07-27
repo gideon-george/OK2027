@@ -60,6 +60,11 @@ export const navGroups: NavGroup[] = [
           "Every polling unit, the register, and the voters still to be mobilised.",
       },
       {
+        href: "/arithmetic",
+        label: "Arithmetic of victory",
+        description: "What winning costs, counted down to one polling unit.",
+      },
+      {
         href: "/leaderboard",
         label: "Leaderboard",
         description: "How states and LGAs are performing.",
